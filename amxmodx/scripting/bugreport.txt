@@ -1,0 +1,610 @@
+date/time         : 2021-11-17, 03:53:51, 449ms
+computer name     : DESKTOP-M7C36LJ
+user name         : DRON12261
+operating system  : Windows NT New build 9200
+system language   : Russian
+system up time    : 14 hours
+program up time   : 13 hours 17 minutes
+processors        : 4x Intel(R) Core(TM)2 Quad CPU Q8200 @ 2.33GHz
+physical memory   : 2356/6143 MB (free/total)
+free disk space   : (C:) 33,69 GB (E:) 91,69 GB
+display mode      : 1280x1024, 32 bit
+process id        : $2210
+allocated memory  : 121,14 MB
+executable        : AMXX_Studio.exe
+exec. date/time   : 2021-11-16 14:34
+version           : 1.4.3.3
+madExcept version : 3.0b
+callstack crc     : $b1954426, $1b847d09, $80c891de
+exception number  : 1
+exception class   : EFCreateError
+exception message : Datei "C:\Users\DRON12261\AppData\Local\Temp\Temp1_hud_customizer.zip\hud_customizer.sma" kann nicht erstellt werden. Отказано в доступе.
+
+main thread ($1e88):
+00468afc +0a4 AMXX_Studio.exe Classes               TFileStream.Create
+00468a34 +020 AMXX_Studio.exe Classes               TFileStream.Create
+004679f5 +015 AMXX_Studio.exe Classes               TStrings.SaveToFile
+0066a966 +0f6 AMXX_Studio.exe UnitCompile   48  +12 DoCompilePAWN
+00687c67 +0e7 AMXX_Studio.exe UnitfrmMain 1741   +7 TfrmMain.mnuDoCompileClick
+00513b29 +095 AMXX_Studio.exe TB2Item     1499  +22 TTBCustomItem.Click
+00554f7d +015 AMXX_Studio.exe SpTBXItem   4155   +2 TSpTBXCustomItem.Click
+00683057 +00b AMXX_Studio.exe UnitfrmMain  692   +1 TfrmMain.mnuTCompileClick
+00513b29 +095 AMXX_Studio.exe TB2Item     1499  +22 TTBCustomItem.Click
+00513a1b +0b3 AMXX_Studio.exe TB2Item     1449  +27 TTBCustomItem.ClickWndProc
+00471ef0 +014 AMXX_Studio.exe Classes               StdWndProc
+7766a07b +00b USER32.dll                            DispatchMessageA
+004dc0c7 +083 AMXX_Studio.exe Forms                 TApplication.ProcessMessage
+004dc0fe +00a AMXX_Studio.exe Forms                 TApplication.HandleMessage
+004dc32e +096 AMXX_Studio.exe Forms                 TApplication.Run
+0068f336 +81e AMXX_Studio.exe AMXX_Studio  163 +101 initialization
+7734fa27 +017 KERNEL32.DLL                          BaseThreadInitThunk
+
+thread $2ca4:
+77ba2d1c +00c ntdll.dll                                       NtDelayExecution
+77204975 +045 KERNELBASE.dll                                  SleepEx
+7720491a +00a KERNELBASE.dll                                  Sleep
+0066fd2d +1c9 AMXX_Studio.exe UnitTextAnalyze         100 +33 ParseCodePawn
+0066e647 +26f AMXX_Studio.exe UnitCodeExplorerUpdater  79 +26 TCodeExplorerUpdater.Execute
+00470888 +034 AMXX_Studio.exe Classes                         ThreadProc
+00404cf8 +028 AMXX_Studio.exe System                          ThreadWrapper
+7734fa27 +017 KERNEL32.DLL                                    BaseThreadInitThunk
+
+thread $1c40:
+77b0106c +0c win32u.dll                NtUserGetMessage
+7767d998 +28 USER32.dll                GetMessageW
+77ba2a9a +0a ntdll.dll                 NtSetEvent
+771feefa +0a KERNELBASE.dll            SetEvent
+0044d59d +0d AMXX_Studio.exe madExcept CallThreadProcSafe
+0044d607 +37 AMXX_Studio.exe madExcept ThreadExceptFrame
+7734fa27 +17 KERNEL32.DLL              BaseThreadInitThunk
+>> created by main thread ($1e88) at:
+7746a628 +00 shcore.dll
+
+thread $848:
+77ba470c +0c ntdll.dll     NtWaitForWorkViaWorkerFactory
+7734fa27 +17 KERNEL32.DLL  BaseThreadInitThunk
+
+modules:
+00400000 AMXX_Studio.exe                 1.4.3.3             E:\Games\Half-Life\czero\addons\amxmodx\scripting
+03c80000 scilexer.dll                    1.6.6.0             E:\Games\Half-Life\czero\addons\amxmodx\scripting
+0a910000 ue32ctmn.dll                    1.0.0.30            C:\Program Files\IDM Computer Solutions\UltraEdit
+10000000 RTSSHooks.dll                                       C:\Program Files (x86)\RivaTuner Statistics Server
+66660000 mpclient.dll                    4.18.2110.6         C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2110.6-0\x86
+66740000 MpDetoursCopyAccelerator.dll    4.18.2110.6         C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2110.6-0\x86
+68020000 ieframe.dll                     11.0.19041.1348     C:\Windows\System32
+68660000 CHARTV.dll                      6.2.19041.1         C:\WINDOWS\SYSTEM32
+68680000 DUser.dll                       6.2.19041.546       C:\WINDOWS\SYSTEM32
+68700000 DUI70.dll                       6.2.19041.746       C:\WINDOWS\SYSTEM32
+688a0000 windows.staterepositorycore.dll 6.2.19041.844       C:\WINDOWS\SYSTEM32
+688b0000 mssprxy.dll                     7.0.19041.1151      C:\WINDOWS\system32
+688d0000 atlthunk.dll                    6.2.19041.546       C:\WINDOWS\SYSTEM32
+688e0000 MSWB7.dll                       6.2.19041.546       C:\WINDOWS\System32
+68920000 provsvc.dll                     6.2.19041.1         C:\WINDOWS\System32
+68990000 wlidprov.dll                    6.2.19041.746       C:\WINDOWS\System32
+68a20000 IDStore.dll                     6.2.19041.746       C:\WINDOWS\System32
+68a50000 7-zip32.dll                     19.0.0.0            C:\Program Files\7-Zip
+68a60000 shacct.dll                      6.2.19041.610       C:\WINDOWS\System32
+68a80000 twext.dll                       6.2.19041.906       C:\WINDOWS\system32
+68ab0000 LINKINFO.dll                    6.2.19041.546       C:\WINDOWS\SYSTEM32
+68ac0000 dtshl32.dll                     10.14.0.1664        C:\Program Files\DAEMON Tools Lite
+68b90000 WMASF.DLL                       12.0.19041.1        C:\WINDOWS\system32
+68bd0000 mfperfhelper.dll                6.2.19041.1         C:\WINDOWS\system32
+68ce0000 WMVCore.DLL                     12.0.19041.1202     C:\WINDOWS\system32
+68ef0000 audiodev.dll                    6.2.19041.1         C:\WINDOWS\system32
+68f30000 PortableDeviceTypes.dll         6.2.19041.746       C:\Windows\System32
+68f60000 PortableDeviceApi.dll           6.2.19041.746       C:\Windows\System32
+68ff0000 wpdshext.dll                    6.2.19041.1266      C:\WINDOWS\system32
+69080000 MMDevApi.dll                    6.2.19041.1023      C:\WINDOWS\System32
+690f0000 DevDispItemProvider.dll         6.2.19041.546       C:\Windows\System32
+69110000 PlayToDevice.dll                6.2.19041.746       C:\Windows\System32
+69160000 dlnashext.dll                   6.2.19041.1266      C:\Windows\System32
+691b0000 DAVHLPR.dll                     6.2.19041.546       C:\WINDOWS\System32
+691c0000 davclnt.dll                     6.2.19041.546       C:\WINDOWS\System32
+691e0000 ntlanman.dll                    6.2.19041.1151      C:\WINDOWS\System32
+69200000 SAMLIB.dll                      6.2.19041.1348      C:\WINDOWS\SYSTEM32
+69220000 Windows.FileExplorer.Common.dll 6.2.19041.1320      C:\Windows\System32
+69270000 FileSyncShell.dll               21.205.1003.5       C:\Users\DRON12261\AppData\Local\Microsoft\OneDrive\21.205.1003.0005\i386
+693a0000 Windows.Storage.Search.dll      6.2.19041.746       C:\WINDOWS\system32
+69440000 policymanager.dll               6.2.19041.1320      C:\WINDOWS\SYSTEM32
+694d0000 StructuredQuery.dll             7.0.19041.746       C:\WINDOWS\System32
+69560000 ntshrui.dll                     6.2.19041.844       C:\WINDOWS\SYSTEM32
+695c0000 thumbcache.dll                  6.2.19041.1151      C:\Windows\System32
+69610000 WindowsCodecs.dll               6.2.19041.1151      C:\WINDOWS\SYSTEM32
+69790000 tiptsf.dll                      6.2.19041.746       C:\Program Files (x86)\Common Files\microsoft shared\ink
+69820000 msls31.dll                      3.10.349.0          C:\WINDOWS\SYSTEM32
+69860000 RICHED20.dll                    5.31.23.1231        C:\WINDOWS\SYSTEM32
+698e0000 twinapi.appcore.dll             6.2.19041.746       C:\WINDOWS\system32
+6bab0000 NetworkExplorer.dll             6.2.19041.1         C:\WINDOWS\system32
+6bad0000 dcomp.dll                       6.2.19041.1266      C:\WINDOWS\system32
+6c040000 TextShaping.dll                                     C:\WINDOWS\SYSTEM32
+6c2a0000 textinputframework.dll          6.2.19041.1320      C:\WINDOWS\SYSTEM32
+6c3e0000 drprov.dll                      6.2.19041.546       C:\WINDOWS\System32
+6c3f0000 USP10.dll                       6.2.19041.546       C:\WINDOWS\SYSTEM32
+6c410000 d3d11.dll                       6.2.19041.1202      C:\WINDOWS\system32
+6c5f0000 dataexchange.dll                6.2.19041.1151      C:\WINDOWS\system32
+6c630000 olepro32.dll                    6.2.19041.84        C:\WINDOWS\SYSTEM32
+6c650000 OneCoreUAPCommonProxyStub.dll   6.2.19041.1320      C:\Windows\System32
+6ca40000 appresolver.dll                 6.2.19041.1202      C:\Windows\System32
+6cac0000 Windows.StateRepositoryPS.dll   6.2.19041.844       C:\Windows\System32
+6cb60000 CoreUIComponents.dll            6.2.19041.546       C:\WINDOWS\SYSTEM32
+6cde0000 CoreMessaging.dll               6.2.19041.867       C:\WINDOWS\SYSTEM32
+6ce80000 wintypes.dll                    6.2.19041.1348      C:\WINDOWS\SYSTEM32
+6d440000 OLEACC.dll                      7.2.19041.746       C:\WINDOWS\SYSTEM32
+6d4a0000 gdiplus.dll                     6.2.19041.1348      C:\WINDOWS\WinSxS\x86_microsoft.windows.gdiplus_6595b64144ccf1df_1.1.19041.1348_none_d94f9953e1060d01
+6d8b0000 winspool.drv                    6.2.19041.1288      C:\WINDOWS\SYSTEM32
+6db80000 gpapi.dll                       6.2.19041.572       C:\WINDOWS\SYSTEM32
+6dba0000 DEVOBJ.dll                      6.2.19041.1151      C:\WINDOWS\System32
+6dc00000 XmlLite.dll                     6.2.19041.546       C:\WINDOWS\SYSTEM32
+6fd80000 propsys.dll                     7.0.19041.1023      C:\WINDOWS\system32
+6fe50000 WINSTA.dll                      6.2.19041.546       C:\WINDOWS\System32
+6ff80000 sppc.dll                        6.2.19041.546       C:\Windows\System32
+6ffc0000 msimg32.dll                     6.2.19041.546       C:\WINDOWS\SYSTEM32
+703c0000 samcli.dll                      6.2.19041.546       C:\WINDOWS\SYSTEM32
+70680000 comctl32.dll                    5.82.19041.1110     C:\WINDOWS\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.19041.1110_none_c0da534e38c01f4d
+70710000 wsock32.dll                     6.2.19041.1         C:\WINDOWS\SYSTEM32
+70720000 MPR.dll                         6.2.19041.546       C:\WINDOWS\SYSTEM32
+707e0000 dwmapi.dll                      6.2.19041.746       C:\WINDOWS\SYSTEM32
+70810000 uxtheme.dll                     6.2.19041.1266      C:\WINDOWS\system32
+71050000 WININET.dll                     11.0.19041.1320     C:\WINDOWS\SYSTEM32
+729b0000 ntmarta.dll                     6.2.19041.546       C:\WINDOWS\SYSTEM32
+729e0000 kernel.appcore.dll              6.2.19041.546       C:\WINDOWS\SYSTEM32
+72a20000 profapi.dll                     6.2.19041.844       C:\WINDOWS\SYSTEM32
+72a60000 MSASN1.dll                      6.2.19041.546       C:\WINDOWS\System32
+72a70000 Bcp47Langs.dll                  6.2.19041.1266      C:\Windows\System32
+72ac0000 SLC.dll                         6.2.19041.546       C:\Windows\System32
+72b10000 edputil.dll                     6.2.19041.546       C:\WINDOWS\SYSTEM32
+72bb0000 msvcp110_win.dll                6.2.19041.546       C:\WINDOWS\SYSTEM32
+72c20000 SspiCli.dll                     6.2.19041.906       C:\WINDOWS\SYSTEM32
+72c50000 srvcli.dll                      6.2.19041.546       C:\WINDOWS\SYSTEM32
+72c70000 iertutil.dll                    11.0.19041.1266     C:\Windows\System32
+72ea0000 CRYPTBASE.DLL                   6.2.19041.546       C:\WINDOWS\SYSTEM32
+72eb0000 wkscli.dll                      6.2.19041.546       C:\WINDOWS\System32
+72ec0000 netutils.dll                    6.2.19041.546       C:\WINDOWS\SYSTEM32
+72f00000 urlmon.dll                      11.0.19041.1320     C:\WINDOWS\SYSTEM32
+730b0000 WINHTTP.dll                     6.2.19041.1320      C:\Windows\System32
+73180000 winmm.dll                       6.2.19041.546       C:\WINDOWS\SYSTEM32
+731b0000 version.dll                     6.2.19041.546       C:\WINDOWS\SYSTEM32
+731c0000 RICHED32.DLL                    6.2.19041.1         C:\WINDOWS\SYSTEM32
+73210000 cscapi.dll                      6.2.19041.546       C:\WINDOWS\SYSTEM32
+73430000 NETAPI32.dll                    6.2.19041.546       C:\Windows\System32
+73450000 USERENV.dll                     6.2.19041.572       C:\WINDOWS\SYSTEM32
+73480000 Secur32.dll                     6.2.19041.546       C:\WINDOWS\SYSTEM32
+73490000 dxgi.dll                        6.2.19041.1266      C:\WINDOWS\system32
+73730000 comctl32.DLL                    6.10.19041.1110     C:\WINDOWS\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_a8625c1886757984
+73940000 WTSAPI32.dll                    6.2.19041.546       C:\WINDOWS\SYSTEM32
+73950000 Wldp.dll                        6.2.19041.1320      C:\WINDOWS\SYSTEM32
+73980000 windows.storage.dll             6.2.19041.1320      C:\WINDOWS\SYSTEM32
+73f90000 apphelp.dll                     6.2.19041.1320      C:\WINDOWS\SYSTEM32
+75a50000 CFGMGR32.dll                    6.2.19041.1151      C:\WINDOWS\System32
+75a90000 WINTRUST.dll                    6.2.19041.1266      C:\WINDOWS\System32
+75ae0000 SETUPAPI.dll                    6.2.19041.1237      C:\WINDOWS\System32
+76100000 ws2_32.DLL                      6.2.19041.546       C:\WINDOWS\System32
+76170000 bcryptPrimitives.dll            6.2.19041.1348      C:\WINDOWS\System32
+76270000 combase.dll                     6.2.19041.1348      C:\WINDOWS\System32
+76500000 MSCTF.dll                       6.2.19041.1202      C:\WINDOWS\System32
+765e0000 msvcrt.dll                      7.0.19041.546       C:\WINDOWS\System32
+766a0000 coml2.dll                       6.2.19041.546       C:\WINDOWS\System32
+76700000 gdi32full.dll                   6.2.19041.1320      C:\WINDOWS\System32
+767e0000 ucrtbase.dll                    6.2.19041.789       C:\WINDOWS\System32
+76900000 clbcatq.dll                     2001.12.10941.16384 C:\WINDOWS\System32
+769a0000 msvcp_win.dll                   6.2.19041.789       C:\WINDOWS\System32
+76a20000 GDI32.dll                       6.2.19041.1202      C:\WINDOWS\System32
+76a50000 SHLWAPI.dll                     6.2.19041.1023      C:\WINDOWS\System32
+76aa0000 SHELL32.dll                     6.2.19041.1320      C:\WINDOWS\System32
+77060000 sechost.dll                     6.2.19041.906       C:\WINDOWS\System32
+770e0000 KERNELBASE.dll                  6.2.19041.1348      C:\WINDOWS\System32
+77300000 imm32.dll                       6.2.19041.546       C:\WINDOWS\System32
+77330000 KERNEL32.DLL                    6.2.19041.1348      C:\WINDOWS\System32
+77430000 shcore.dll                      6.2.19041.1320      C:\WINDOWS\System32
+774c0000 advapi32.dll                    6.2.19041.1052      C:\WINDOWS\System32
+77540000 CRYPT32.dll                     6.2.19041.1320      C:\WINDOWS\System32
+77640000 USER32.dll                      6.2.19041.1348      C:\WINDOWS\System32
+777e0000 RPCRT4.dll                      6.2.19041.1288      C:\WINDOWS\System32
+778a0000 oleaut32.dll                    6.2.19041.985       C:\WINDOWS\System32
+77940000 bcrypt.dll                      6.2.19041.1023      C:\WINDOWS\System32
+77960000 comdlg32.dll                    6.2.19041.906       C:\WINDOWS\System32
+77a10000 ole32.dll                       6.2.19041.1202      C:\WINDOWS\System32
+77b00000 win32u.dll                      6.2.19041.1320      C:\WINDOWS\System32
+77b30000 ntdll.dll                       6.2.19041.1288      C:\WINDOWS\SYSTEM32
+
+processes:
+0000 Idle                        0
+0004 System                      0
+006c Registry                    0
+01bc smss.exe                    0
+02b8 csrss.exe                   0
+030c wininit.exe                 0
+031c csrss.exe                   1
+0354 services.exe                0
+035c lsass.exe                   0
+03ac winlogon.exe                1
+0234 svchost.exe                 0
+0270 fontdrvhost.exe             0
+026c fontdrvhost.exe             1
+037c svchost.exe                 0
+0414 svchost.exe                 0
+0460 dwm.exe                     1
+04f4 svchost.exe                 0
+0514 svchost.exe                 0
+0548 svchost.exe                 0
+0570 svchost.exe                 0
+05ac svchost.exe                 0
+05bc svchost.exe                 0
+064c WUDFHost.exe                0
+0658 svchost.exe                 0
+0660 svchost.exe                 0
+0664 svchost.exe                 0
+0670 svchost.exe                 0
+06ac NVDisplay.Container.exe     0
+0724 svchost.exe                 0
+0730 svchost.exe                 0
+073c svchost.exe                 0
+0750 svchost.exe                 0
+07a8 Memory Compression          0
+07bc svchost.exe                 0
+07ec NVDisplay.Container.exe     1
+05e4 svchost.exe                 0
+081c svchost.exe                 0
+0874 svchost.exe                 0
+0888 svchost.exe                 0
+08b0 svchost.exe                 0
+08ec svchost.exe                 0
+0958 svchost.exe                 0
+09f4 svchost.exe                 0
+0a24 svchost.exe                 0
+0b08 svchost.exe                 0
+0bb8 RtkAudioService64.exe       0
+0bd4 svchost.exe                 0
+0ae4 svchost.exe                 0
+0adc svchost.exe                 0
+0a68 svchost.exe                 0
+0b78 svchost.exe                 0
+0d18 svchost.exe                 0
+0d34 svchost.exe                 0
+0e00 svchost.exe                 0
+0e3c RAVBg64.exe                 1
+0e48 svchost.exe                 0
+0edc spoolsv.exe                 0
+0f00 svchost.exe                 0
+0f08 svchost.exe                 0
+0f8c svchost.exe                 0
+0fa0 remoting_host.exe           0
+0fa8 svchost.exe                 0
+0fb4 svchost.exe                 0
+0fc8 svchost.exe                 0
+0fec IpOverUsbSvc.exe            0
+0ffc MonectServerService.exe     0
+0d7c nvcontainer.exe             0
+0cbc mysqld.exe                  0
+0e28 OriginWebHelperService.exe  0
+097c sqlwriter.exe               0
+0808 urouter.exe                 0
+0ac4 MsMpEng.exe                 0
+0a74 TeamViewer_Service.exe      0
+103c svchost.exe                 0
+1050 RstMwService.exe            0
+10bc BuildService.exe            0
+10e8 svchost.exe                 0
+10fc CoordService.exe            0
+1108 svchost.exe                 0
+12a4 svchost.exe                 0
+12d0 remoting_host.exe           0
+1318 dasHost.exe                 0
+138c svchost.exe                 0
+13f8 svchost.exe                 0
+0c5c mysqld.exe                  0
+10f8 conhost.exe                 0
+143c svchost.exe                 0
+145c MonectServer.exe            1
+14b0 sqlceip.exe                 0
+14e8 sqlservr.exe                0
+1574 svchost.exe                 0
+1780 rundll32.exe                1
+1948 sihost.exe                  1 normal       C:\Windows\System32
+195c svchost.exe                 1 normal       C:\Windows\System32
+19bc svchost.exe                 1 normal       C:\Windows\System32
+19c8 svchost.exe                 0
+1a54 taskhostw.exe               1 normal       C:\Windows\System32
+1ab0 MSIAfterburner.exe          1
+1aec nvcontainer.exe             1 normal       C:\Program Files\NVIDIA Corporation\NvContainer
+1c14 fdlauncher.exe              0
+1c90 Launchpad.exe               0
+1ce8 svchost.exe                 0
+1e0c fdhost.exe                  0
+1e30 conhost.exe                 0
+1e6c explorer.exe                1 normal       C:\Windows
+1f0c SearchIndexer.exe           0
+2124 svchost.exe                 0
+11e0 svchost.exe                 0
+0fc4 svchost.exe                 1 normal       C:\Windows\System32
+14b8 StartMenuExperienceHost.exe 1 normal       C:\Windows\SystemApps\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy
+1cd4 ctfmon.exe                  1
+2288 wscript.exe                 0
+051c RuntimeBroker.exe           1 normal       C:\Windows\System32
+090c TextInputHost.exe           1 normal       C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\InputApp
+1384 NisSrv.exe                  0
+1540 RuntimeBroker.exe           1 normal       C:\Windows\System32
+0540 svchost.exe                 0
+24d4 SettingSyncHost.exe         1 below normal C:\Windows\System32
+25d8 SecurityHealthSystray.exe   1 normal       C:\Windows\System32
+25f8 PentabletService.exe        1 normal       C:\Program Files\Pentablet
+262c SecurityHealthService.exe   0
+26a8 svchost.exe                 0
+2794 XMouseButtonControl.exe     1
+21b0 NVIDIA Web Helper.exe       1 below normal C:\Program Files (x86)\NVIDIA Corporation\NvNode
+211c conhost.exe                 1 below normal C:\Windows\System32
+189c RAVCpl64.exe                1 normal       C:\Program Files\Realtek\Audio\HDA
+21c4 SearchApp.exe               1 normal       C:\Windows\SystemApps\Microsoft.Windows.Search_cw5n1h2txyewy
+2418 svchost.exe                 1 normal       C:\Windows\System32
+2420 GoogleCrashHandler.exe      0
+1a70 GoogleCrashHandler64.exe    0
+0d68 SgrmBroker.exe              0
+05e8 svchost.exe                 0
+11b0 svchost.exe                 0
+1f94 svchost.exe                 0
+2474 RTSS.exe                    1
+0a0c EncoderServer.exe           1
+24dc RTSSHooksLoader64.exe       1
+2180 ShellExperienceHost.exe     1 normal       C:\Windows\SystemApps\ShellExperienceHost_cw5n1h2txyewy
+2530 RuntimeBroker.exe           1 normal       C:\Windows\System32
+0e90 ApplicationFrameHost.exe    1 normal       C:\Windows\System32
+25e4 Video.UI.exe                1 normal       C:\Program Files\WindowsApps\Microsoft.ZuneVideo_10.21092.10731.0_x64__8wekyb3d8bbwe
+0d30 RuntimeBroker.exe           1 normal       C:\Windows\System32
+0eac svchost.exe                 0
+0b9c svchost.exe                 0
+2154 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+1724 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+0a20 chrome.exe                  1 above normal C:\Program Files\Google\Chrome\Application
+221c chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+2510 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+06bc chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+256c chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+0f6c chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+1700 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+2554 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+1ee0 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+1788 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+0e68 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+2ad4 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+0c64 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+2178 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+1994 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+1b94 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+2f88 DTShellHlp.exe              1 normal       C:\Program Files\DAEMON Tools Lite
+29c0 DiscSoftBusServiceLite.exe  0
+2a3c RuntimeBroker.exe           1 normal       C:\Windows\System32
+2210 AMXX_Studio.exe             1 normal       E:\Games\Half-Life\czero\addons\amxmodx\scripting
+1084 Microsoft.Photos.exe        1 normal       C:\Program Files\WindowsApps\Microsoft.Windows.Photos_2021.21090.10008.0_x64__8wekyb3d8bbwe
+2158 RuntimeBroker.exe           1 normal       C:\Windows\System32
+1cbc chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+0480 MpCopyAccelerator.exe       0
+1998 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+0714 chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+2a38 notepad++.exe               1 normal       C:\Program Files (x86)\Notepad++
+2aa0 dllhost.exe                 1 normal       C:\Windows\System32
+18c0 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+26b4 Music.UI.exe                1 normal       C:\Program Files\WindowsApps\Microsoft.ZuneMusic_10.21102.10421.0_x64__8wekyb3d8bbwe
+30dc svchost.exe                 0
+27ac YourPhone.exe               1 normal       C:\Program Files\WindowsApps\Microsoft.YourPhone_1.21092.149.0_x64__8wekyb3d8bbwe
+2544 RuntimeBroker.exe           1 normal       C:\Windows\System32
+0e9c chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+2fcc chrome.exe                  1 normal       C:\Program Files\Google\Chrome\Application
+2f20 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+3378 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+2ca0 chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+287c chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+30cc chrome.exe                  1 idle         C:\Program Files\Google\Chrome\Application
+00d4 audiodg.exe                 0
+
+hardware:
++ {1ed2bbf9-11f0-4084-b21f-ad83a8e6dcdc}
+  - Fax
+  - Microsoft Print to PDF
+  - Microsoft XPS Document Writer
+  - OneNote for Windows 10
+  - Корневая очередь печати
+  - Отправить в OneNote 2013
++ {36fc9e60-c465-11cf-8056-444553540000}
+  - Alcor Micro USB 2.0 Card Reader (driver 2.0.152.10130)
+  - DAEMON Tools Lite Virtual USB Bus (driver 3.5.0.0)
+  - Generic USB Hub
+  - Intel(R) ICH9 Family USB универсальный хост-контроллер  - 2934
+  - Intel(R) ICH9 Family USB универсальный хост-контроллер  - 2935
+  - Intel(R) ICH9 Family USB универсальный хост-контроллер  - 2936
+  - Intel(R) ICH9 Family USB универсальный хост-контроллер  - 2937
+  - Intel(R) ICH9 Family USB универсальный хост-контроллер  - 2938
+  - Intel(R) ICH9 Family USB универсальный хост-контроллер  - 2939
+  - Intel(R) ICH9 Family USB2 расширенный хост-контроллер  - 293A
+  - Intel(R) ICH9 Family USB2 расширенный хост-контроллер  - 293C
+  - Запоминающее устройство для USB
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Корневой USB-концентратор
+  - Составное USB устройство
++ {4d36e966-e325-11ce-bfc1-08002be10318}
+  - Компьютер с ACPI на базе x64
++ {4d36e967-e325-11ce-bfc1-08002be10318}
+  - ADATA USB Flash Drive USB Device
+  - Generic- Compact Flash
+  - Generic- MS/MS-Pro
+  - Generic- SD/MMC
+  - Generic- SM/xD-Picture
+  - HGST HTS721010A9E630
+  - ST1000DM003-1CH162
++ {4d36e968-e325-11ce-bfc1-08002be10318}
+  - NVIDIA GeForce GTX 550 Ti (driver 23.21.13.9135)
++ {4d36e96b-e325-11ce-bfc1-08002be10318}
+  - Клавиатура HID
+  - Клавиатура HID
+  - Клавиатура HID
++ {4d36e96c-e325-11ce-bfc1-08002be10318}
+  - AMM Virtual Audio Device (driver 15.6.16.289)
+  - NVIDIA High Definition Audio (driver 1.3.36.6)
+  - NVIDIA High Definition Audio (driver 1.3.36.6)
+  - NVIDIA High Definition Audio (driver 1.3.36.6)
+  - NVIDIA High Definition Audio (driver 1.3.36.6)
+  - NVIDIA Virtual Audio Device (Wave Extensible) (WDM) (driver 4.13.0.0)
+  - Realtek High Definition Audio (driver 6.0.8971.1)
++ {4d36e96d-e325-11ce-bfc1-08002be10318}
+  - AGERE PCI-SV92EX Soft Modem
++ {4d36e96e-e325-11ce-bfc1-08002be10318}
+  - Универсальный монитор PnP
++ {4d36e96f-e325-11ce-bfc1-08002be10318}
+  - HID-совместимая мышь
+  - HID-совместимая мышь
+  - HID-совместимая мышь
++ {4d36e972-e325-11ce-bfc1-08002be10318}
+  - Realtek PCIe GbE Family Controller (driver 10.42.526.2020)
+  - TP-LINK 300Mbps Wireless N Adapter (driver 10.0.3.456)
++ {4d36e97b-e325-11ce-bfc1-08002be10318}
+  - DAEMON Tools Lite Virtual SCSI Bus (driver 5.29.0.0)
+  - Intel(R) Chipset SATA/PCIe RST Premium Controller (driver 17.9.2.1013)
+  - Контроллер дискового пространства (Майкрософт)
++ {4d36e97d-e325-11ce-bfc1-08002be10318}
+  - CMOS системы и часы реального времени
+  - Microsoft ACPI-совместимая система
+  - NVVHCI Enumerator (driver 3.4.2785.9920)
+  - PCI Express Root Complex
+  - Scp Virtual Bus Driver (driver 1.0.0.103)
+  - UMBus перечислитель корневой шины
+  - Virtual Gamepad Emulation Bus (driver 1.16.112.0)
+  - Арифметический сопроцессор
+  - Базовый видеодрайвер (Майкрософт)
+  - Базовый драйвер отрисовки (Майкрософт)
+  - Встроенный динамик
+  - Высокоточный таймер событий
+  - Диспетчер томов
+  - Драйвер Microsoft System Management BIOS
+  - Драйвер инфраструктуры виртуализации Microsoft Hyper-V
+  - Кнопка питания ACPI
+  - Контроллер CPU–IO
+  - Контроллер High Definition Audio (Microsoft)
+  - Контроллер High Definition Audio (Microsoft)
+  - Контроллер LPC
+  - Контроллер прямого доступа к памяти
+  - Контроллер шины SM
+  - Мост PCI–PCI
+  - Мост PCI–PCI
+  - Мост PCI–PCI
+  - Мост PCI–PCI
+  - Мост PCI–PCI
+  - Перечислитель виртуальных дисков (Майкрософт)
+  - Перечислитель виртуальных сетевых адаптеров NDIS
+  - Перечислитель композитной шины
+  - Перечислитель программных устройств Plug and Play
+  - Программируемый контроллер прерываний
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Ресурсы системной платы
+  - Системная плата
+  - Системная плата
+  - Системный таймер
+  - Устаревшее устройство
+  - Фиксированная функциональная кнопка ACPI
+  - Шина перенаправителя устройств удаленных рабочих столов
++ {50127dc3-0f36-415e-a6cc-4cb3be910b65}
+  - Intel(R) Core(TM)2 Quad  CPU   Q8200  @ 2.33GHz
+  - Intel(R) Core(TM)2 Quad  CPU   Q8200  @ 2.33GHz
+  - Intel(R) Core(TM)2 Quad  CPU   Q8200  @ 2.33GHz
+  - Intel(R) Core(TM)2 Quad  CPU   Q8200  @ 2.33GHz
++ {533c5b84-ec70-11d2-9505-00c04f79deaf}
+  - Универсальная теневая копия тома
+  - Универсальная теневая копия тома
+  - Универсальная теневая копия тома
++ {5c4c3332-344d-483c-8739-259e934c9cc8}
+  - Универсальный компонент программного обеспечения
++ {62f9c741-b25a-46ce-b54c-9bccce08b6f2}
+  - Microsoft Device Association Root Enumerator
+  - Microsoft Radio Device Enumeration Bus
+  - Microsoft RRAS Root Enumerator
+  - Беспроводная сеть
+  - Программный синтезатор звуковой таблицы Microsoft
++ {6bdd1fc1-810f-11d0-bec7-08002be2092f}
+  - LSI 1394 OHCI-совместимый хост-контроллер
++ {745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+  - HID-совместимое устройство управления
+  - HID-совместимое устройство, определенное поставщиком
+  - HID-совместимый дигитайзер
+  - HID-совместимый системный контроллер
+  - Pentablet HID (driver 6.1.7600.16385)
+  - USB-устройство ввода
+  - USB-устройство ввода
+  - USB-устройство ввода
+  - vJoy Device (driver 12.53.21.621)
++ {aa018edf-4915-415e-9c17-d7ebec8917d2}
+  - NvModuleTracker Device (driver 6.14.24033.38719)
++ {c166523c-fe0c-4a94-a586-f1a80cfbbf3e}
+  - Микрофон (Realtek High Definition Audio)
+  - Наушники (Realtek High Definition Audio)
++ {eec5ad98-8080-425f-922a-dabf3de3f69a}
+  - CPBA_X64FRE
+  - G:\
+  - J:\
+  - K:\
+  - L:\
+
+cpu registers:
+eax = 026493dc
+ebx = 08f40f88
+ecx = 00000000
+edx = 00468b01
+esi = 08f3ca6c
+edi = 08f4ffff
+eip = 00468b01
+esp = 0019fb38
+ebp = 0019fba4
+
+stack dump:
+0019fb38  01 8b 46 00 de fa ed 0e - 01 00 00 00 07 00 00 00  ..F.............
+0019fb48  4c fb 19 00 01 8b 46 00 - dc 93 64 02 88 0f f4 08  L.....F...d.....
+0019fb58  6c ca f3 08 ff ff f4 08 - a4 fb 19 00 68 fb 19 00  l...........h...
+0019fb68  b4 fb 19 00 dc 45 40 00 - a4 fb 19 00 dc 0c 25 04  .....E@.......%.
+0019fb78  88 0f f4 08 01 ca f3 08 - 00 00 00 00 00 00 00 00  ................
+0019fb88  00 00 00 00 00 00 00 00 - 04 54 97 00 0b 35 46 00  .........T...5F.
+0019fb98  4c 90 0f 0a 0b 00 00 00 - 86 41 40 00 cc fb 19 00  L........A@.....
+0019fba8  39 8a 46 00 00 00 00 00 - ff ff f4 08 e8 fb 19 00  9.F.............
+0019fbb8  1b 47 40 00 cc fb 19 00 - 88 0f f4 08 c0 65 61 02  .G@..........ea.
+0019fbc8  00 00 00 00 e0 fb 19 00 - fa 79 46 00 ff ff 00 00  .........yF.....
+0019fbd8  00 00 00 00 a8 4c 4e 00 - 34 fc 19 00 69 a9 66 00  .....LN.4...i.f.
+0019fbe8  3c fc 19 00 dc 45 40 00 - 34 fc 19 00 dc 0c 25 04  <....E@.4.....%.
+0019fbf8  00 00 00 00 a8 79 5f 02 - 00 00 00 00 00 00 00 00  .....y_.........
+0019fc08  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0019fc18  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0019fc28  00 00 00 00 00 00 00 00 - 00 00 00 00 78 fc 19 00  ............x...
+0019fc38  6c 7c 68 00 b0 fc 19 00 - dc 45 40 00 78 fc 19 00  l|h......E@.x...
+0019fc48  08 1a 60 02 00 00 00 00 - 00 00 00 00 00 00 00 00  ..`.............
+0019fc58  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+0019fc68  00 00 00 00 00 00 00 00 - 00 00 00 00 00 00 00 00  ................
+
+disassembling:
+[...]
+0066a946      mov     edx, [edx+$14]
+0066a949      call    -$265b62 ($404dec)     ; System.@LStrLAsg
+0066a949
+0066a94e    loc_66a94e:
+0066a94e 48   mov     eax, [$698714]
+0066a953      mov     eax, [eax]
+0066a955      mov     eax, [eax+$614]
+0066a95b      mov     eax, [eax+$2e0]
+0066a961      mov     edx, [ebp-4]
+0066a964      mov     ecx, [eax]
+0066a966    > call    dword ptr [ecx+$74]
+0066a966
+0066a969 50   mov     dl, 1
+0066a96b      xor     eax, eax
+0066a96d      call    +$26e6 ($66d058)       ; UnitPlugins.Plugin_VisibleControlChange
+0066a96d
+0066a972      test    al, al
+0066a974      jz      loc_66a9b8
+0066a974
+0066a976 51   mov     eax, [$698714]
+0066a97b      mov     eax, [eax]
+[...]
+

@@ -1,0 +1,51 @@
+L 11/16/2021 - 15:38:13: Start of error session.
+L 11/16/2021 - 15:38:13: Info (map "de_sienna_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 15:38:13: [ZP] Invalid Player (1)
+L 11/16/2021 - 15:38:13: [AMXX] Run time error 10 (plugin "zp50_class_zombie_rage.amxx") (native "zp_class_zombie_get_current") - debug not enabled!
+L 11/16/2021 - 15:38:13: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 11/16/2021 - 15:42:48: Start of error session.
+L 11/16/2021 - 15:42:48: Info (map "de_sienna_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 15:42:48: [ZP] Invalid Player (1)
+L 11/16/2021 - 15:42:48: [AMXX] Displaying debug trace (plugin "zp50_class_zombie_rage.amxx")
+L 11/16/2021 - 15:42:48: [AMXX] Run time error 10: native error (native "zp_class_zombie_get_current")
+L 11/16/2021 - 15:42:48: [AMXX]    [0] zp50_class_zombie_rage.sma::client_disconnect (line 92)
+L 11/16/2021 - 19:30:30: Start of error session.
+L 11/16/2021 - 19:30:30: Info (map "de_corruption_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 19:30:30: Invalid array handle provided (0)
+L 11/16/2021 - 19:30:30: [AMXX] Run time error 10 (plugin "AdaptiveMusicZP50.amxx") (native "ArraySize") - debug not enabled!
+L 11/16/2021 - 19:30:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 11/16/2021 - 19:52:00: Start of error session.
+L 11/16/2021 - 19:52:00: Info (map "de_corruption_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 19:52:00: Invalid array handle provided (0)
+L 11/16/2021 - 19:52:00: [AMXX] Run time error 10 (plugin "AdaptiveMusicZP50.amxx") (native "ArraySize") - debug not enabled!
+L 11/16/2021 - 19:52:00: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 11/16/2021 - 19:54:33: Start of error session.
+L 11/16/2021 - 19:54:33: Info (map "de_fastline_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 19:54:33: Invalid array handle provided (0)
+L 11/16/2021 - 19:54:33: [AMXX] Run time error 10 (plugin "AdaptiveMusicZP50.amxx") (native "ArraySize") - debug not enabled!
+L 11/16/2021 - 19:54:33: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 11/16/2021 - 19:59:07: Start of error session.
+L 11/16/2021 - 19:59:07: Info (map "de_fastline_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 19:59:07: Invalid array handle provided (0)
+L 11/16/2021 - 19:59:07: [AMXX] Run time error 10 (plugin "AdaptiveMusicZP50.amxx") (native "ArraySize") - debug not enabled!
+L 11/16/2021 - 19:59:07: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 11/16/2021 - 20:02:59: Start of error session.
+L 11/16/2021 - 20:02:59: Info (map "de_fastline_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 20:02:59: Invalid array handle provided (0)
+L 11/16/2021 - 20:02:59: [AMXX] Run time error 10 (plugin "AdaptiveMusicZP50.amxx") (native "ArraySize") - debug not enabled!
+L 11/16/2021 - 20:02:59: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 11/16/2021 - 21:21:44: Start of error session.
+L 11/16/2021 - 21:21:44: Info (map "de_fastline_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 21:21:44: Invalid array handle provided (0)
+L 11/16/2021 - 21:21:44: [AMXX] Run time error 10 (plugin "AdaptiveMusicZP50.amxx") (native "ArraySize") - debug not enabled!
+L 11/16/2021 - 21:21:44: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 11/16/2021 - 21:29:16: Start of error session.
+L 11/16/2021 - 21:29:16: Info (map "de_fastline_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 21:29:16: Invalid array handle provided (0)
+L 11/16/2021 - 21:29:16: [AMXX] Run time error 10 (plugin "AdaptiveMusicZP50.amxx") (native "ArraySize") - debug not enabled!
+L 11/16/2021 - 21:29:16: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 11/16/2021 - 23:57:35: Start of error session.
+L 11/16/2021 - 23:57:35: Info (map "cs_militia_cz") (file "addons/amxmodx/logs/error_20211116.log")
+L 11/16/2021 - 23:57:35: Invalid array handle provided (0)
+L 11/16/2021 - 23:57:35: [AMXX] Run time error 10 (plugin "AdaptiveMusicZP50.amxx") (native "ArraySize") - debug not enabled!
+L 11/16/2021 - 23:57:35: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

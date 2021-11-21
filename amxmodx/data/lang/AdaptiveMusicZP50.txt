@@ -1,0 +1,17 @@
+[en]
+ZP_AOST_NOW_PLAYING = Now playing:
+ZP_AOST_NO_PLAY = Track not playing
+ZP_AOST_LIGHT = Light part playing
+ZP_AOST_MEDIUM = Medium part playing
+ZP_AOST_HEAVY = Heavy part playing
+ZP_AOST_END = Ending part playing
+ZP_CANNOT_LOAD_OST_FILE = Cannot load OST list from
+
+[ru]
+ZP_AOST_NOW_PLAYING = Сейчас играет:
+ZP_AOST_NO_PLAY = Трек не играет
+ZP_AOST_LIGHT = Играет легкая часть
+ZP_AOST_MEDIUM = Играет средняя часть
+ZP_AOST_HEAVY = Играет тяжелая часть
+ZP_AOST_END = Играет завершающая часть
+ZP_CANNOT_LOAD_OST_FILE = Не удалось загрузить список треков из

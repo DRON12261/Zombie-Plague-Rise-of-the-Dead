@@ -1,0 +1,5 @@
+L 11/18/2021 - 05:07:58: Start of error session.
+L 11/18/2021 - 05:07:58: Info (map "de_dust2_cz") (file "addons/amxmodx/logs/error_20211118.log")
+L 11/18/2021 - 05:07:58: [ZP] Invalid Player (1)
+L 11/18/2021 - 05:07:58: [AMXX] Run time error 10 (plugin "zp50_class_zombie_rage.amxx") (native "zp_class_zombie_get_current") - debug not enabled!
+L 11/18/2021 - 05:07:58: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
