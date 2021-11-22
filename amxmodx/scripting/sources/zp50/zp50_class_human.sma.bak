@@ -12,8 +12,6 @@
 #include <amxmodx>
 #include <fun>
 #include <fakemeta>
-#include <cstrike>
-#include <hamsandwich>
 #include <amx_settings_api>
 #include <cs_player_models_api>
 #include <cs_weap_models_api>
@@ -21,14 +19,7 @@
 #include <cs_weap_restrict_api>
 #include <zp50_core>
 #include <zp50_colorchat>
-#include <zp50_class_human>
 #include <zp50_class_human_const>
-#include <zp50_class_sniper>
-#include <zp50_class_survivor>
-
-#define SetBit(%1,%2)      (%1 |= (1<<%2))
-#define ClearBit(%1,%2)    (%1 &= ~(1<<%2))
-#define CheckBit(%1,%2)    (%1 & (1<<%2))
 
 // Human Classes file
 new const ZP_HUMANCLASSES_FILE[] = "zp_humanclasses.ini"
@@ -43,27 +34,12 @@ new g_model_vknife_human[MODEL_MAX_LENGTH] = "models/v_knife.mdl"
 
 #define MAXPLAYERS 32
 
-#define TASK_BOT_DROP_WEAPON 1500
-#define ID_TASK_BOT_DROP_WEAPON (taskid - TASK_BOT_DROP_WEAPON)
-
 #define HUMANS_DEFAULT_NAME "Human"
 #define HUMANS_DEFAULT_DESCRIPTION "Default"
 #define HUMANS_DEFAULT_HEALTH 100
 #define HUMANS_DEFAULT_ARMOR 15
 #define HUMANS_DEFAULT_SPEED 1.0
 #define HUMANS_DEFAULT_GRAVITY 1.0
-
-const XO_CWEAPONBOX = 4;
-new const m_rgpPlayerItems_CWeaponBox[6] = {34, 35, ...}
-
-/*new const weaponList[32][32] = {	"", 			"weapon_p228", 		"", 			"weapon_scout", 
-				"weapon_hegrenade", 	"weapon_xm1014", 	"", 			"weapon_mac10", 
-				"weapon_aug", 		"weapon_smokegrenade", 	"weapon_elite", 	"weapon_fiveseven", 
-				"weapon_ump45", 	"weapon_sg550", 	"weapon_galil", 	"weapon_famas",
-				"weapon_usp", 		"weapon_glock18", 	"weapon_awp", 		"weapon_mp5navy", 
-				"weapon_m249", 		"weapon_m3", 		"weapon_m4a1", 		"weapon_tmp", 
-				"weapon_g3sg1", 	"weapon_flashbang", 	"weapon_deagle", 	"weapon_sg552", 
-				"weapon_ak47", 		"", 			"weapon_p90", 		""}*/
 
 // CS Player PData Offsets (win32)
 const OFFSET_CSMENUCODE = 205
@@ -88,8 +64,6 @@ new Array:g_HumanClassHealth
 new Array:g_HumanClassArmor
 new Array:g_HumanClassSpeed
 new Array:g_HumanClassGravity
-new Array:g_HumanClassWeaponRestrictsFile
-new Array:g_HumanClassWeaponRestrictsHandle
 new Array:g_HumanClassModelsFile
 new Array:g_HumanClassModelsHandle
 new g_HumanClass[MAXPLAYERS+1]
@@ -102,33 +76,6 @@ public plugin_init()
 	
 	register_clcmd("say /hclass", "show_menu_humanclass")
 	register_clcmd("say /class", "show_class_menu")
-	
-	RegisterHam(Ham_Touch, "weaponbox", "fw_TouchWeapon")
-	
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_galil", "fw_ItemAddPostGALIL", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_famas", "fw_ItemAddPostFAMAS", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_m4a1", "fw_ItemAddPostM4A1", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_ak47", "fw_ItemAddPostAK47", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_sg552", "fw_ItemAddPostSG552", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_aug", "fw_ItemAddPostAUG", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_m3", "fw_ItemAddPostM3", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_xm1014", "fw_ItemAddPostXM1014", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_m249", "fw_ItemAddPostM249", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_mac10", "fw_ItemAddPostMAC10", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_ump45", "fw_ItemAddPostUMP45", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_mp5navy", "fw_ItemAddPostMP5NAVY", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_tmp", "fw_ItemAddPostTMP", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_p90", "fw_ItemAddPostP90", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_p228", "fw_ItemAddPostP228", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_glock18", "fw_ItemAddPostGLOCK18", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_usp", "fw_ItemAddPostUSP", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_deagle", "fw_ItemAddPostDEAGLE", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_fiveseven", "fw_ItemAddPostFIVESEVEN", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_elite", "fw_ItemAddPostELITE", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_awp", "fw_ItemAddPostAWP", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_sg550", "fw_ItemAddPostSG550", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_g3sg1", "fw_ItemAddPostG3SG1", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_scout", "fw_ItemAddPostSCOUT", true)
 	
 	g_Forwards[FW_CLASS_SELECT_PRE] = CreateMultiForward("zp_fw_class_human_select_pre", ET_CONTINUE, FP_CELL, FP_CELL)
 	g_Forwards[FW_CLASS_SELECT_POST] = CreateMultiForward("zp_fw_class_human_select_post", ET_CONTINUE, FP_CELL, FP_CELL)
@@ -146,8 +93,6 @@ public plugin_cfg()
 		ArrayPushCell(g_HumanClassArmor, HUMANS_DEFAULT_ARMOR)
 		ArrayPushCell(g_HumanClassSpeed, HUMANS_DEFAULT_SPEED)
 		ArrayPushCell(g_HumanClassGravity, HUMANS_DEFAULT_GRAVITY)
-		ArrayPushCell(g_HumanClassWeaponRestrictsFile, false)
-		ArrayPushCell(g_HumanClassWeaponRestrictsHandle, Invalid_Array)
 		ArrayPushCell(g_HumanClassModelsFile, false)
 		ArrayPushCell(g_HumanClassModelsHandle, Invalid_Array)
 		g_HumanClassCount++
@@ -174,7 +119,6 @@ public plugin_natives()
 	register_native("zp_class_human_get_max_armor", "_class_human_get_max_armor")
 	register_native("zp_class_human_register", "native_class_human_register")
 	register_native("zp_class_human_register_model", "_class_human_register_model")
-	register_native("zp_class_human_register_restricted_weapon", "_class_human_register_restricted_weapon")
 	register_native("zp_class_human_get_id", "native_class_human_get_id")
 	register_native("zp_class_human_get_name", "native_class_human_get_name")
 	register_native("zp_class_human_get_real_name", "_class_human_get_real_name")
@@ -191,453 +135,18 @@ public plugin_natives()
 	g_HumanClassArmor = ArrayCreate(1, 1)
 	g_HumanClassSpeed = ArrayCreate(1, 1)
 	g_HumanClassGravity = ArrayCreate(1, 1)
-	g_HumanClassWeaponRestrictsFile = ArrayCreate(1, 1)
-	g_HumanClassWeaponRestrictsHandle = ArrayCreate(1, 1)
 	g_HumanClassModelsFile = ArrayCreate(1, 1)
 	g_HumanClassModelsHandle = ArrayCreate(1, 1)
-}
-
-bool:CanUserPickupWeapon(weapon, player)
-{
-	new Array:weapon_restricts = ArrayGetCell(g_HumanClassWeaponRestrictsHandle, zp_class_human_get_current(player))
-	
-	if (weapon_restricts != Invalid_Array)
-	{
-		for (new i = 0; i < ArraySize(weapon_restricts); i++)
-		{
-			new weaponID = ArrayGetCell(weapon_restricts, i)
-			if(weapon == weaponID)
-			{
-				return false
-			}
-		}
-	}
-	return true
-}
-
-public BotsHandle(taskid)
-{
-	if (!is_user_alive(ID_TASK_BOT_DROP_WEAPON) || !is_user_connected(ID_TASK_BOT_DROP_WEAPON) || zp_class_sniper_get(ID_TASK_BOT_DROP_WEAPON) || zp_class_survivor_get(ID_TASK_BOT_DROP_WEAPON) || zp_class_human_get_current(ID_TASK_BOT_DROP_WEAPON) == -1)
-	{
-		return
-	}
-	
-	if (!CanUserPickupWeapon(get_user_weapon(ID_TASK_BOT_DROP_WEAPON), ID_TASK_BOT_DROP_WEAPON))
-	{
-		engclient_cmd(ID_TASK_BOT_DROP_WEAPON, "drop")
-	}
-}
-
-cs_get_weaponbox_type(iWeaponBox)
-{
-    new iWeapon
-    
-    for(new i=1; i<=5; i++)
-    {
-        iWeapon = get_pdata_cbase(iWeaponBox, m_rgpPlayerItems_CWeaponBox[i], XO_CWEAPONBOX)
-	
-        if( iWeapon > 0 )
-        {
-            return cs_get_weapon_id(iWeapon)
-        }
-    }
-    
-    return 0
-}
-
-public fw_TouchWeapon(weapon, player)
-{
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-	
-	if(!CanUserPickupWeapon(cs_get_weaponbox_type(weapon), player))
-	{
-		return HAM_SUPERCEDE
-	}
-	
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostGALIL(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-	
-	if (!CanUserPickupWeapon(CSW_GALIL, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostFAMAS(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-	
-	if (!CanUserPickupWeapon(CSW_FAMAS, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostM4A1(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-	
-	if (!CanUserPickupWeapon(CSW_M4A1, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostAK47(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-		
-	if (!CanUserPickupWeapon(CSW_AK47, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostSG552(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-		
-	if (!CanUserPickupWeapon(CSW_SG552, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostAUG(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-		
-	if (!CanUserPickupWeapon(CSW_AUG, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostM3(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-	
-	if (!CanUserPickupWeapon(CSW_M3, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostXM1014(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_XM1014, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostM249(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-	
-	if (!CanUserPickupWeapon(CSW_M249, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostMAC10(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_MAC10, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostUMP45(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_UMP45, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostMP5NAVY(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_MP5NAVY, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostTMP(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_TMP, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostP90(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_P90, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostP228(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_P228, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostGLOCK18(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_GLOCK18, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostUSP(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_USP, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostDEAGLE(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_DEAGLE, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostFIVESEVEN(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_FIVESEVEN, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostELITE(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_ELITE, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostAWP(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_AWP, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostSG550(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_SG550, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostG3SG1(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_G3SG1, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPostSCOUT(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) == -1)
-	{
-		return HAM_IGNORED
-	}
-
-	if (!CanUserPickupWeapon(CSW_SCOUT, player))
-	{
-		client_cmd(player, "drop")
-		return HAM_HANDLED
-	}
-	return HAM_IGNORED
 }
 
 public client_putinserver(id)
 {
 	g_HumanClass[id] = ZP_INVALID_HUMAN_CLASS
 	g_HumanClassNext[id] = ZP_INVALID_HUMAN_CLASS
-	
-	if (is_user_bot(id))
-	{
-		set_task(0.1, "BotsHandle", id+TASK_BOT_DROP_WEAPON, _, _, "b");
-	}
 }
 
 public client_disconnected(id)
 {
-	if (is_user_bot(id))
-	{
-		remove_task(id+TASK_BOT_DROP_WEAPON)
-	}
-	
 	// Reset remembered menu pages
 	MENU_PAGE_CLASS = 0
 }
@@ -1018,21 +527,6 @@ public native_class_human_register(plugin_id, num_params)
 		amx_save_setting_float(ZP_HUMANCLASSES_FILE, real_name, "GRAVITY", gravity)
 	ArrayPushCell(g_HumanClassGravity, gravity)
 	
-	// Weapon Restrictions
-	new Array:weapon_restricts = ArrayCreate(1, 1)
-	amx_load_setting_int_arr(ZP_HUMANCLASSES_FILE, real_name, "WEAPON RESTRICTS", weapon_restricts)
-	if (ArraySize(weapon_restricts) > 0)
-	{
-		ArrayPushCell(g_HumanClassWeaponRestrictsFile, true)
-	}
-	else
-	{
-		ArrayPushCell(g_HumanClassWeaponRestrictsFile, false)
-		ArrayDestroy(weapon_restricts)
-		amx_save_setting_string(ZP_HUMANCLASSES_FILE, real_name, "WEAPON RESTRICTS", "")
-	}
-	ArrayPushCell(g_HumanClassWeaponRestrictsHandle, weapon_restricts)
-	
 	g_HumanClassCount++
 	return g_HumanClassCount - 1;
 }
@@ -1077,37 +571,6 @@ public _class_human_register_model(plugin_id, num_params)
 	new real_name[32]
 	ArrayGetString(g_HumanClassRealName, classid, real_name, charsmax(real_name))
 	amx_save_setting_string_arr(ZP_HUMANCLASSES_FILE, real_name, "MODELS", class_models)
-	
-	return true;
-}
-
-public _class_human_register_restricted_weapon(plugin_id, num_params)
-{
-	new classid = get_param(1)
-	
-	if (classid < 0 || classid >= g_HumanClassCount)
-	{
-		log_error(AMX_ERR_NATIVE, "[ZP ROTD] Invalid human class id (%d)", classid)
-		return false;
-	}
-	
-	if (ArrayGetCell(g_HumanClassWeaponRestrictsFile, classid))
-		return true;
-	
-	new weaponID = get_param(2)
-	
-	new Array:weapon_restricts = ArrayGetCell(g_HumanClassWeaponRestrictsHandle, classid)
-	
-	if (weapon_restricts == Invalid_Array)
-	{
-		weapon_restricts = ArrayCreate(1,1)
-		ArraySetCell(g_HumanClassWeaponRestrictsHandle, classid, weapon_restricts)
-	}
-	ArrayPushCell(weapon_restricts, weaponID)
-	
-	new real_name[32]
-	ArrayGetString(g_HumanClassRealName, classid, real_name, charsmax(real_name))
-	amx_save_setting_int_arr(ZP_HUMANCLASSES_FILE, real_name, "WEAPON RESTRICTS", weapon_restricts)
 	
 	return true;
 }
