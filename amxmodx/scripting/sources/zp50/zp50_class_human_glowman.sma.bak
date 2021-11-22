@@ -12,7 +12,9 @@
 #include <amxmodx>
 #include <amxmisc>
 #include <cstrike>
+#include <csx>
 #include <fun>
+#include <fakemeta>
 #include <hamsandwich>
 #include <cs_ham_bots_api>
 
@@ -28,6 +30,8 @@
 #define ID_AURA (taskid - TASK_AURA)
 #define TASK_FLARE_GIVE 950
 #define ID_FLARE_GIVE (taskid - TASK_FLARE_GIVE)
+#define TASK_BOT 1100
+#define ID_TASK_BOT (taskid - TASK_BOT)
 
 // Classic Human Attributes
 new const humanclass4_name[] = "Glowman"
@@ -37,9 +41,14 @@ const humanclass4_health = 100
 const humanclass4_armor = 10
 const Float:humanclass4_speed = 1.1
 const Float:humanclass4_gravity = 1.1
-new humanclass4_weaponrestricts[] = {CSW_M3, CSW_XM1014, CSW_MAC10, CSW_UMP45, CSW_MP5NAVY, CSW_TMP, CSW_P90, CSW_SCOUT, CSW_AWP, CSW_G3SG1, CSW_SG550, CSW_M249}
 
 new g_HumanGlowman
+
+const XO_CWEAPONBOX = 4;
+new const m_rgpPlayerItems_CWeaponBox[6] = {34, 35, ...}
+
+const g_RestCountGlowman = 12
+new g_RestIdsGlowman[g_RestCountGlowman] = { CSW_M3, CSW_XM1014, CSW_M249, CSW_AWP, CSW_SG550, CSW_G3SG1, CSW_SCOUT, CSW_MAC10, CSW_UMP45, CSW_MP5NAVY, CSW_TMP, CSW_P90 }
 
 public plugin_precache()
 {
@@ -48,12 +57,46 @@ public plugin_precache()
 	RegisterHam(Ham_Killed, "player", "fw_PlayerKilled")
 	RegisterHamBots(Ham_Killed, "fw_PlayerKilled")
 	
+	RegisterHam(Ham_Touch, "weaponbox", "fw_TouchWeapon")
+	
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_scout", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_mac10", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_ump45", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_mp5navy", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_tmp", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_p90", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_m3", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_xm1014", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_m249", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_awp", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_sg550", "fw_ItemAddPost", true)
+	RegisterHam(Ham_Item_AddToPlayer, "weapon_g3sg1", "fw_ItemAddPost", true)
+	
 	g_HumanGlowman = zp_class_human_register(humanclass4_name, humanclass4_info, humanclass4_health, humanclass4_armor, humanclass4_speed, humanclass4_gravity)
 	new index
 	for (index = 0; index < sizeof humanclass4_models; index++)
 		zp_class_human_register_model(g_HumanGlowman, humanclass4_models[index])
-	for (index = 0; index < sizeof humanclass4_weaponrestricts; index++)
-		zp_class_human_register_restricted_weapon(g_HumanGlowman, humanclass4_weaponrestricts[index])
+}
+
+public client_connect(id)
+{
+	if (is_user_bot(id))
+	{
+		set_task(0.1, "BotsHandle", id+TASK_BOT, _, _, "b");
+	}
+}
+
+public BotsHandle(taskid)
+{
+	if (!is_user_alive(ID_TASK_BOT) || !is_user_connected(ID_TASK_BOT) || zp_class_human_get_current(ID_TASK_BOT) != g_HumanGlowman || zp_class_sniper_get(ID_TASK_BOT) || zp_class_survivor_get(ID_TASK_BOT))
+	{
+		return
+	}
+	
+	if (!CanUserPickupWeapon(get_user_weapon(ID_TASK_BOT)))
+	{
+		engclient_cmd(ID_TASK_BOT, "drop")
+	}
 }
 
 public zp_fw_gamemodes_end()
@@ -68,6 +111,11 @@ public client_disconnected(id)
 {
 	remove_task(id+TASK_AURA)
 	remove_task(id+TASK_FLARE_GIVE)
+	
+	if (is_user_bot(id))
+	{
+		remove_task(id+TASK_BOT)
+	}
 }
 
 public fw_PlayerKilled(victim, attacker, shouldgib)
@@ -127,6 +175,56 @@ public glowman_aura(taskid)
 	write_byte(2) // life
 	write_byte(0) // decay rate
 	message_end()
+}
+
+cs_get_weaponbox_type( iWeaponBox ) // assuming weaponbox contain only 1 weapon
+{
+    new iWeapon
+    for(new i=1; i<=5; i++)
+    {
+        iWeapon = get_pdata_cbase(iWeaponBox, m_rgpPlayerItems_CWeaponBox[i], XO_CWEAPONBOX)
+        if( iWeapon > 0 )
+        {
+            return cs_get_weapon_id(iWeapon)
+        }
+    }
+    return 0
+}
+
+bool:CanUserPickupWeapon(weapon)
+{
+	for (new i = 0; i < g_RestCountGlowman; i++)
+	{
+		if(weapon == g_RestIdsGlowman[i])
+		{
+			return false
+		}
+	}
+	return true
+}
+
+public fw_TouchWeapon(weapon, player)
+{
+	if (!pev_valid(weapon) || !is_user_alive(player) || zp_class_human_get_current(player) != g_HumanGlowman)
+	{
+		return HAM_IGNORED
+	}
+	
+	if(!CanUserPickupWeapon(cs_get_weaponbox_type(weapon)))
+			return HAM_SUPERCEDE
+	
+	return HAM_IGNORED
+}
+
+public fw_ItemAddPost(weapon, player)
+{	
+	if (!pev_valid(weapon) || !is_user_alive(player) || zp_class_human_get_current(player) != g_HumanGlowman)
+	{
+		return HAM_IGNORED
+	}
+	
+	client_cmd(player, "drop")
+	return HAM_HANDLED
 }
 
 public grenade_throw(player, grenade, type)

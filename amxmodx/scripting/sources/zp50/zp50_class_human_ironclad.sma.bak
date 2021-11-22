@@ -10,7 +10,7 @@
 ================================================================================*/
 
 #include <amxmodx>
-#include <cstrike>
+#include <amxmisc>
 
 #include <zp50_class_human>
 
@@ -22,7 +22,6 @@ const humanclass3_health = 100
 const humanclass3_armor = 80
 const Float:humanclass3_speed = 0.7
 const Float:humanclass3_gravity = 1.0
-new humanclass3_weaponrestricts[] = {CSW_NONE}
 
 new g_HumanIronclad
 
@@ -34,6 +33,4 @@ public plugin_precache()
 	new index
 	for (index = 0; index < sizeof humanclass3_models; index++)
 		zp_class_human_register_model(g_HumanIronclad, humanclass3_models[index])
-	for (index = 0; index < sizeof humanclass3_weaponrestricts; index++)
-		zp_class_human_register_restricted_weapon(g_HumanIronclad, humanclass3_weaponrestricts[index])
 }

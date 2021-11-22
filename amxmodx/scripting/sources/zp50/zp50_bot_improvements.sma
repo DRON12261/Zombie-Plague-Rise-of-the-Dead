@@ -15,6 +15,8 @@
 #include <zp50_core>
 #include <zp50_gamemodes>
 
+new bool:is_Playing = false
+
 public plugin_init()
 {
 	register_plugin("[ZP ROTD] Bot Improvements", ZP_VERSION_STRING, "ZP Dev Team + DRON12261")
@@ -24,14 +26,26 @@ public plugin_init()
 
 public fm_CmdStart(id,Handle)
 {
-	new Buttons; Buttons = get_uc(Handle,UC_Buttons)
+	new Buttons
+	Buttons = get_uc(Handle,UC_Buttons)
 	
-	if(is_user_bot(id) && zp_gamemodes_get_current() == ZP_NO_GAME_MODE)
+	if(is_user_bot(id) && !is_Playing)
 	{
 		Buttons &= ~IN_ATTACK
 		set_uc(Handle , UC_Buttons , Buttons)
+		
 		return FMRES_SUPERCEDE
 	}
 	
 	return FMRES_IGNORED
 } 
+
+public zp_fw_gamemodes_start(game_mode_id)
+{
+	is_Playing = true
+}
+
+public zp_fw_gamemodes_end(game_mode_id)
+{
+	is_Playing = false
+}

@@ -21,9 +21,6 @@
 #include <zp50_class_sniper>
 #include <zp50_class_human>
 
-#define TASK_BOT 1200
-#define ID_TASK_BOT (taskid - TASK_BOT)
-
 #define MAXPLAYERS 32
 
 // Classic Human Attributes
@@ -34,48 +31,22 @@ const humanclass5_health = 50
 const humanclass5_armor = 0
 const Float:humanclass5_speed = 2.0
 const Float:humanclass5_gravity = 0.5
+new humanclass5_weaponrestricts[] = { CSW_GALIL, CSW_FAMAS, CSW_M4A1, CSW_AK47, CSW_SG552, CSW_AUG, CSW_M3, CSW_XM1014, CSW_M249, CSW_AWP, CSW_SG550, CSW_G3SG1, CSW_SCOUT, CSW_MAC10, CSW_UMP45, CSW_MP5NAVY, CSW_TMP, CSW_P90 }
 
 new g_HumanRunner
-
-const XO_CWEAPONBOX = 4;
-new const m_rgpPlayerItems_CWeaponBox[6] = {34, 35, ...}
-
-const g_RestCountRunner = 18
-new g_RestIdsRunner[g_RestCountRunner] = { CSW_GALIL, CSW_FAMAS, CSW_M4A1, CSW_AK47, CSW_SG552, CSW_AUG, CSW_M3, CSW_XM1014, CSW_M249, CSW_AWP, CSW_SG550, CSW_G3SG1, CSW_SCOUT, CSW_MAC10, CSW_UMP45, CSW_MP5NAVY, CSW_TMP, CSW_P90 }
 
 new Float:g_LeapLastTimeRunner[MAXPLAYERS+1]
 
 new Float:g_CooldownRunner = 10.0
-new g_ForceRunner = 700
+new g_ForceRunner = 600
 new Float:g_HeightRunner = 200.0
 
 public plugin_precache()
 {
 	register_plugin("[ZP ROTD] Class: Human: Runner", ZP_VERSION_STRING, "ZP Dev Team + DRON12261")
 	
-	RegisterHam(Ham_Touch, "weaponbox", "fw_TouchWeapon")
-	
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage")
 	RegisterHamBots(Ham_TakeDamage, "fw_TakeDamage")
-	
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_galil", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_famas", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_m4a1", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_ak47", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_sg552", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_aug", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_m3", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_xm1014", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_m249", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_awp", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_sg550", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_g3sg1", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_scout", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_mac10", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_ump45", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_mp5navy", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_tmp", "fw_ItemAddPost", true)
-	RegisterHam(Ham_Item_AddToPlayer, "weapon_p90", "fw_ItemAddPost", true)
 	
 	register_forward(FM_PlayerPreThink, "fw_PlayerPreThink")
 	
@@ -83,35 +54,8 @@ public plugin_precache()
 	new index
 	for (index = 0; index < sizeof humanclass5_models; index++)
 		zp_class_human_register_model(g_HumanRunner, humanclass5_models[index])
-}
-
-public client_connect(id)
-{
-	if (is_user_bot(id))
-	{
-		set_task(0.1, "BotsHandle", id+TASK_BOT, _, _, "b");
-	}
-}
-
-public BotsHandle(taskid)
-{
-	if (!is_user_alive(ID_TASK_BOT) || !is_user_connected(ID_TASK_BOT) || zp_class_human_get_current(ID_TASK_BOT) != g_HumanRunner || zp_class_sniper_get(ID_TASK_BOT) || zp_class_survivor_get(ID_TASK_BOT))
-	{
-		return
-	}
-	
-	if (!CanUserPickupWeapon(get_user_weapon(ID_TASK_BOT)))
-	{
-		engclient_cmd(ID_TASK_BOT, "drop")
-	}
-}
-
-public client_disconnected(id)
-{	
-	if (is_user_bot(id))
-	{
-		remove_task(id+TASK_BOT)
-	}
+	for (index = 0; index < sizeof humanclass5_weaponrestricts; index++)
+		zp_class_human_register_restricted_weapon(g_HumanRunner, humanclass5_weaponrestricts[index])
 }
 
 // Get entity's speed (from fakemeta_util)
@@ -160,56 +104,6 @@ public fw_PlayerPreThink(id)
 	g_LeapLastTimeRunner[id] = current_time
 }
 
-cs_get_weaponbox_type( iWeaponBox ) // assuming weaponbox contain only 1 weapon
-{
-    new iWeapon
-    for(new i=1; i<=5; i++)
-    {
-        iWeapon = get_pdata_cbase(iWeaponBox, m_rgpPlayerItems_CWeaponBox[i], XO_CWEAPONBOX)
-        if( iWeapon > 0 )
-        {
-            return cs_get_weapon_id(iWeapon)
-        }
-    }
-    return 0
-}
-
-bool:CanUserPickupWeapon(weapon)
-{
-	for (new i = 0; i < g_RestCountRunner; i++)
-	{
-		if(weapon == g_RestIdsRunner[i])
-		{
-			return false
-		}
-	}
-	return true
-}
-
-public fw_TouchWeapon(weapon, player)
-{
-	if (!is_user_alive(player) || zp_class_human_get_current(player) != g_HumanRunner)
-	{
-		return HAM_IGNORED
-	}
-	
-	if(!CanUserPickupWeapon(cs_get_weaponbox_type(weapon)))
-			return HAM_SUPERCEDE
-	
-	return HAM_IGNORED
-}
-
-public fw_ItemAddPost(weapon, player)
-{	
-	if (!is_user_alive(player) || zp_class_human_get_current(player) != g_HumanRunner)
-	{
-		return HAM_IGNORED
-	}
-	
-	client_cmd(player, "drop")
-	return HAM_HANDLED
-}
-
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 {
 	if (victim == attacker || !is_user_alive(attacker) || zp_class_human_get_current(attacker) != g_HumanRunner || zp_core_is_zombie(attacker) || zp_class_sniper_get(attacker) || zp_class_survivor_get(attacker))
@@ -233,3 +127,6 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 	}
 	return HAM_HANDLED
 }
+/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
+*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1049\\ f0\\ fs16 \n\\ par }
+*/

@@ -89,6 +89,15 @@ native zp_class_human_register(const name[], const description[], health, armor,
 native zp_class_human_register_model(classid, const model[])
 
 /**
+ * Registers a custom player model for a given human class.
+ *
+ * @param classid		A valid human class ID.
+ * @param weaponid			A valid weapon ID.
+ * @return				True on success, false otherwise.
+ */
+native zp_class_human_register_restricted_weapon(classid, weaponid)
+
+/**
  * Returns a human class' ID.
  *
  * @param name		Class name to look for.
