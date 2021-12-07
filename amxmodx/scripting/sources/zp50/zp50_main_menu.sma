@@ -127,7 +127,7 @@ public client_putinserver(id)
 // Main Menu
 show_menu_main(id)
 {
-	static menu[250]
+	static menu[500]
 	new len
 	
 	// Title

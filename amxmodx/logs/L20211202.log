@@ -1,0 +1,363 @@
+L 12/02/2021 - 14:34:42: -------- Mapchange to de_dust2_1337_cz --------
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] 
+
+
+Class: 0, Classic Human.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] 
+
+
+Class: 1, Raptor Human.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] 
+
+
+Class: 2, Ironclad.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] 
+
+
+Class: 3, Glowman.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] 
+
+
+Class: 4, Runner.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] 
+
+
+Class: 5, Grenadier.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] 
+
+
+Class: 6, Killer.
+L 12/02/2021 - 14:34:54: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 14:35:10: [admin.amxx] Login: "DRON12261<1><STEAM_ID_LAN><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstuv") (address "loopback")
+L 12/02/2021 - 14:35:21: [admin.amxx] Login: "DRON12261<1><STEAM_ID_LAN><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstuv") (address "loopback")
+L 12/02/2021 - 14:35:22: [zp50_buy_menus.amxx] weaponCountPrimary Classid 0 is 14. weapon_galil
+L 12/02/2021 - 14:35:25: [zp50_buy_menus.amxx] weaponCountPrimary Classid 0 is 14. weapon_galil
+L 12/02/2021 - 14:35:27: [zp50_buy_menus.amxx] weaponCountSecondary Classid 0 is 6. weapon_glock18
+L 12/02/2021 - 14:36:49: [zp50_buy_menus.amxx] weaponCountPrimary Classid 3 is 6. weapon_galil
+L 12/02/2021 - 14:36:52: [zp50_buy_menus.amxx] weaponCountSecondary Classid 3 is 6. weapon_glock18
+L 12/02/2021 - 14:39:48: -------- Mapchange to de_dust2_1337_cz --------
+L 12/02/2021 - 14:39:48: [CSX] Could not load csstats file: czero\
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] 
+
+
+Class: 0, Classic Human.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] 
+
+
+Class: 1, Raptor Human.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] 
+
+
+Class: 2, Ironclad.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] 
+
+
+Class: 3, Glowman.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] 
+
+
+Class: 4, Runner.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] 
+
+
+Class: 5, Grenadier.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 14:39:50: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 14:39:51: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 14:39:51: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 14:39:51: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 14:39:51: [zp50_buy_menus.amxx] 
+
+
+Class: 6, Killer.
+L 12/02/2021 - 14:39:51: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 14:39:57: [admin.amxx] Login: "DRON12261<1><STEAM_ID_LAN><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstuv") (address "loopback")
+L 12/02/2021 - 14:40:01: [admin.amxx] Login: "DRON12261<1><STEAM_ID_LAN><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstuv") (address "loopback")
+L 12/02/2021 - 14:40:02: [zp50_buy_menus.amxx] weaponCountPrimary Classid 0 is 14. weapon_galil
+L 12/02/2021 - 14:40:05: [zp50_buy_menus.amxx] weaponCountPrimary Classid 0 is 14. weapon_galil
+L 12/02/2021 - 14:40:08: [zp50_buy_menus.amxx] weaponCountSecondary Classid 0 is 6. weapon_glock18
+L 12/02/2021 - 14:41:40: [zp50_buy_menus.amxx] weaponCountPrimary Classid 3 is 6. weapon_galil
+L 12/02/2021 - 14:41:42: [zp50_buy_menus.amxx] weaponCountSecondary Classid 3 is 6. weapon_glock18
+L 12/02/2021 - 14:42:13: [zp50_buy_menus.amxx] weaponCountPrimary Classid 3 is 6. weapon_galil
+L 12/02/2021 - 14:43:36: [zp50_buy_menus.amxx] weaponCountPrimary Classid 3 is 6. weapon_galil
+L 12/02/2021 - 14:43:39: [zp50_buy_menus.amxx] weaponCountSecondary Classid 3 is 6. weapon_glock18
+L 12/02/2021 - 14:48:17: [zp50_buy_menus.amxx] weaponCountPrimary Classid 3 is 6. weapon_galil
+L 12/02/2021 - 14:48:21: [zp50_buy_menus.amxx] weaponCountSecondary Classid 3 is 6. weapon_glock18
+L 12/02/2021 - 14:49:51: [zp50_buy_menus.amxx] weaponCountPrimary Classid 5 is 2. weapon_m3
+L 12/02/2021 - 14:49:53: [zp50_buy_menus.amxx] weaponCountSecondary Classid 5 is 6. weapon_glock18
+L 12/02/2021 - 14:52:25: [zp50_buy_menus.amxx] weaponCountPrimary Classid 5 is 2. weapon_m3
+L 12/02/2021 - 14:52:30: [zp50_buy_menus.amxx] weaponCountSecondary Classid 5 is 6. weapon_glock18
+L 12/02/2021 - 14:53:49: [zp50_buy_menus.amxx] weaponCountPrimary Classid 5 is 2. weapon_m3
+L 12/02/2021 - 14:53:50: [zp50_buy_menus.amxx] weaponCountSecondary Classid 5 is 6. weapon_glock18
+L 12/02/2021 - 14:54:53: [zp50_buy_menus.amxx] weaponCountPrimary Classid 5 is 2. weapon_m3
+L 12/02/2021 - 14:54:54: [zp50_buy_menus.amxx] weaponCountSecondary Classid 5 is 6. weapon_glock18
+L 12/02/2021 - 15:00:04: [zp50_buy_menus.amxx] weaponCountPrimary Classid 5 is 2. weapon_m3
+L 12/02/2021 - 15:00:15: -------- Mapchange to de_dust_cz --------
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] 
+
+
+Class: 0, Classic Human.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] 
+
+
+Class: 1, Raptor Human.
+L 12/02/2021 - 15:00:16: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] 
+
+
+Class: 2, Ironclad.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_tmp, 23.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_mac10, 7.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_ump45, 12.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_mp5navy, 19.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_p90, 30.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] 
+
+
+Class: 3, Glowman.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_galil, 14.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_famas, 15.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_m4a1, 22.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_ak47, 28.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_sg552, 27.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_aug, 8.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] 
+
+
+Class: 4, Runner.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] 
+
+
+Class: 5, Grenadier.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_m3, 21.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_xm1014, 5.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_glock18, 17.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_usp, 16.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_p228, 1.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_deagle, 26.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_fiveseven, 11.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Secondary weapon: weapon_elite, 10.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] 
+
+
+Class: 6, Killer.
+L 12/02/2021 - 15:00:17: [zp50_buy_menus.amxx] Primary weapon: weapon_scout, 3.
+L 12/02/2021 - 15:00:19: [admin.amxx] Login: "DRON12261<1><STEAM_ID_LAN><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstuv") (address "loopback")
+L 12/02/2021 - 15:00:21: [admin.amxx] Login: "DRON12261<1><STEAM_ID_LAN><>" became an admin (account "loopback") (access "abcdefghijklmnopqrstuv") (address "loopback")
+L 12/02/2021 - 15:00:22: [zp50_buy_menus.amxx] weaponCountPrimary Classid 0 is 14. weapon_galil
+L 12/02/2021 - 15:00:25: [zp50_buy_menus.amxx] weaponCountPrimary Classid 0 is 14. weapon_galil
+L 12/02/2021 - 15:01:14: [zp50_buy_menus.amxx] weaponCountSecondary Classid 4 is 6. weapon_glock18
+L 12/02/2021 - 15:02:16: [zp50_buy_menus.amxx] weaponCountSecondary Classid 4 is 6. weapon_glock18
+L 12/02/2021 - 15:05:13: [zp50_buy_menus.amxx] weaponCountSecondary Classid 4 is 6. weapon_glock18
+L 12/02/2021 - 15:07:29: [zp50_buy_menus.amxx] weaponCountSecondary Classid 4 is 6. weapon_glock18
+L 12/02/2021 - 15:11:32: [zp50_buy_menus.amxx] weaponCountSecondary Classid 4 is 6. weapon_glock18
+L 12/02/2021 - 15:15:08: [zp50_buy_menus.amxx] weaponCountSecondary Classid 4 is 6. weapon_glock18

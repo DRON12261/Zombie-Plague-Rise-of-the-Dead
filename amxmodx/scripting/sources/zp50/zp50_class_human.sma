@@ -96,12 +96,27 @@ new g_HumanClass[MAXPLAYERS+1]
 new g_HumanClassNext[MAXPLAYERS+1]
 new g_AdditionalMenuText[32]
 
+// CS Player CBase Offsets (win32)
+const PDATA_SAFE = 2
+const OFFSET_ACTIVE_ITEM = 373
+
+// Weapon bitsums
+const PRIMARY_WEAPONS_BIT_SUM = (1<<CSW_SCOUT)|(1<<CSW_XM1014)|(1<<CSW_MAC10)|(1<<CSW_AUG)|(1<<CSW_UMP45)|(1<<CSW_SG550)|(1<<CSW_GALIL)|(1<<CSW_FAMAS)|(1<<CSW_AWP)|(1<<CSW_MP5NAVY)|(1<<CSW_M249)|(1<<CSW_M3)|(1<<CSW_M4A1)|(1<<CSW_TMP)|(1<<CSW_G3SG1)|(1<<CSW_SG552)|(1<<CSW_AK47)|(1<<CSW_P90)
+const SECONDARY_WEAPONS_BIT_SUM = (1<<CSW_P228)|(1<<CSW_ELITE)|(1<<CSW_FIVESEVEN)|(1<<CSW_USP)|(1<<CSW_GLOCK18)|(1<<CSW_DEAGLE)
+const GRENADES_WEAPONS_BIT_SUM = (1<<CSW_HEGRENADE)|(1<<CSW_FLASHBANG)|(1<<CSW_SMOKEGRENADE)
+
+#define PRIMARY_ONLY 1
+#define SECONDARY_ONLY 2
+#define GRENADES_ONLY 4
+
 public plugin_init()
 {
 	register_plugin("[ZP ROTD] Class: Human", ZP_VERSION_STRING, "ZP Dev Team + DRON12261")
 	
 	register_clcmd("say /hclass", "show_menu_humanclass")
 	register_clcmd("say /class", "show_class_menu")
+	
+	register_event("HLTV", "roundStart", "a", "1=0", "2=0")
 	
 	RegisterHam(Ham_Touch, "weaponbox", "fw_TouchWeapon")
 	
@@ -195,6 +210,18 @@ public plugin_natives()
 	g_HumanClassWeaponRestrictsHandle = ArrayCreate(1, 1)
 	g_HumanClassModelsFile = ArrayCreate(1, 1)
 	g_HumanClassModelsHandle = ArrayCreate(1, 1)
+}
+
+public roundStart()
+{
+	new maxplayers = get_maxplayers()
+	
+	for (new i = 1; i <= maxplayers; i++)
+	{
+		strip_weapons(i, PRIMARY_ONLY)
+		strip_weapons(i, SECONDARY_ONLY)
+		strip_weapons(i, GRENADES_ONLY)
+	}
 }
 
 bool:CanUserPickupWeapon(weapon, player)
@@ -650,7 +677,7 @@ public show_class_menu(id)
 
 public show_menu_humanclass(id)
 {
-	static menu[128], name[32], description[32], transkey[64]
+	static menu[512], name[32], description[32], transkey[64]
 	new menuid, itemdata[2], index
 	
 	formatex(menu, charsmax(menu), "%L\r", id, "MENU_HCLASS")
@@ -1207,4 +1234,77 @@ public _class_human_menu_text_add(plugin_id, num_params)
 	static text[32]
 	get_string(1, text, charsmax(text))
 	format(g_AdditionalMenuText, charsmax(g_AdditionalMenuText), "%s%s", g_AdditionalMenuText, text)
+}
+
+// Strip primary/secondary/grenades
+stock strip_weapons(id, stripwhat)
+{
+	// Get user weapons
+	new weapons[32], num_weapons, index, weaponid
+	get_user_weapons(id, weapons, num_weapons)
+	
+	// Loop through them and drop primaries or secondaries
+	for (index = 0; index < num_weapons; index++)
+	{
+		// Prevent re-indexing the array
+		weaponid = weapons[index]
+		
+		if ((stripwhat == PRIMARY_ONLY && ((1<<weaponid) & PRIMARY_WEAPONS_BIT_SUM))
+		|| (stripwhat == SECONDARY_ONLY && ((1<<weaponid) & SECONDARY_WEAPONS_BIT_SUM))
+		|| (stripwhat == GRENADES_ONLY && ((1<<weaponid) & GRENADES_WEAPONS_BIT_SUM)))
+		{
+			// Get weapon name
+			new wname[32]
+			get_weaponname(weaponid, wname, charsmax(wname))
+			
+			// Strip weapon and remove bpammo
+			ham_strip_weapon(id, wname)
+			cs_set_user_bpammo(id, weaponid, 0)
+		}
+	}
+}
+
+stock ham_strip_weapon(index, const weapon[])
+{
+	// Get weapon id
+	new weaponid = get_weaponid(weapon)
+	if (!weaponid)
+		return false;
+	
+	// Get weapon entity
+	new weapon_ent = fm_find_ent_by_owner(-1, weapon, index)
+	if (!weapon_ent)
+		return false;
+	
+	// If it's the current weapon, retire first
+	new current_weapon_ent = fm_cs_get_current_weapon_ent(index)
+	new current_weapon = pev_valid(current_weapon_ent) ? cs_get_weapon_id(current_weapon_ent) : -1
+	if (current_weapon == weaponid)
+		ExecuteHamB(Ham_Weapon_RetireWeapon, weapon_ent)
+	
+	// Remove weapon from player
+	if (!ExecuteHamB(Ham_RemovePlayerItem, index, weapon_ent))
+		return false;
+	
+	// Kill weapon entity and fix pev_weapons bitsum
+	ExecuteHamB(Ham_Item_Kill, weapon_ent)
+	set_pev(index, pev_weapons, pev(index, pev_weapons) & ~(1<<weaponid))
+	return true;
+}
+
+// Find entity by its owner (from fakemeta_util)
+stock fm_find_ent_by_owner(entity, const classname[], owner)
+{
+	while ((entity = engfunc(EngFunc_FindEntityByString, entity, "classname", classname)) && pev(entity, pev_owner) != owner) { /* keep looping */ }
+	return entity;
+}
+
+// Get User Current Weapon Entity
+stock fm_cs_get_current_weapon_ent(id)
+{
+	// Prevent server crash if entity's private data not initalized
+	if (pev_valid(id) != PDATA_SAFE)
+		return -1;
+	
+	return get_pdata_cbase(id, OFFSET_ACTIVE_ITEM);
 }

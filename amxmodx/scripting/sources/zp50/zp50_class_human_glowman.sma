@@ -13,6 +13,7 @@
 #include <amxmisc>
 #include <cstrike>
 #include <fun>
+#include <csx>
 #include <hamsandwich>
 #include <cs_ham_bots_api>
 
@@ -133,10 +134,12 @@ public grenade_throw(player, grenade, type)
 {
 	if (!is_user_connected(player) || !is_user_alive(player) || zp_class_human_get_current(player) != g_HumanGlowman || zp_core_is_zombie(player) || zp_class_sniper_get(player) || zp_class_survivor_get(player))
 		return 0;
-     
+	
 	if (type == CSW_SMOKEGRENADE)
-		set_task(30.0, "give_flare", player+TASK_FLARE_GIVE, _, _)
-     
+	{
+		set_task(30.0, "give_flare", player+TASK_FLARE_GIVE, _, _)	
+	}
+	
 	return 1;
 }
 

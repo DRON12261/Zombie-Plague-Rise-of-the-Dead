@@ -1,0 +1,5 @@
+L 12/05/2021 - 18:15:45: Start of error session.
+L 12/05/2021 - 18:15:45: Info (map "de_dust2_1337_cz") (file "addons/amxmodx/logs/error_20211205.log")
+L 12/05/2021 - 18:15:45: Invalid event (name "HLTV") (plugin "zp50_class_zombie_raptor.amxx")
+L 12/05/2021 - 18:15:45: [AMXX] Run time error 10 (plugin "zp50_class_zombie_raptor.amxx") (native "register_event") - debug not enabled!
+L 12/05/2021 - 18:15:45: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

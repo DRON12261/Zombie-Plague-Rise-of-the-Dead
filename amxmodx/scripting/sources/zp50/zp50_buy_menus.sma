@@ -21,6 +21,7 @@
 #include <zp50_class_survivor>
 #define LIBRARY_SNIPER "zp50_class_sniper"
 #include <zp50_class_sniper>
+#include <zp50_class_human>
 #include <zp50_colorchat>
 
 // Settings file
@@ -30,6 +31,9 @@ new const ZP_SETTINGS_FILE[] = "zombieplague.ini"
 new const primary_items[][] = { "weapon_galil", "weapon_famas", "weapon_m4a1", "weapon_ak47", "weapon_sg552", "weapon_aug", "weapon_scout",
 				"weapon_m3", "weapon_xm1014", "weapon_tmp", "weapon_mac10", "weapon_ump45", "weapon_mp5navy", "weapon_p90" }
 new const secondary_items[][] = { "weapon_glock18", "weapon_usp", "weapon_p228", "weapon_deagle", "weapon_fiveseven", "weapon_elite" }
+
+new Array:g_ClassesPrimaryItems
+new Array:g_ClassesSecondaryItems
 
 // Buy Menu: Grenades
 new const grenades_items[][] = { "weapon_hegrenade", "weapon_flashbang", "weapon_smokegrenade" }
@@ -115,6 +119,12 @@ new cvar_random_primary, cvar_random_secondary, cvar_random_grenades
 new cvar_buy_custom_time, cvar_buy_custom_primary, cvar_buy_custom_secondary, cvar_buy_custom_grenades
 new cvar_give_all_grenades
 
+new const ZP_HUMANCLASSES_FILE[] = "zp_humanclasses.ini"
+
+new g_HumanClassCount = 0
+new Array:g_HumanClassWeaponRestricts
+new Array:g_HumanClassWeaponRestrictsBitSum
+
 public plugin_init()
 {
 	register_plugin("[ZP ROTD] Custom Buy Menus", ZP_VERSION_STRING, "ZP Dev Team + DRON12261")
@@ -178,6 +188,107 @@ public plugin_precache()
 		
 		// Save to external file
 		amx_save_setting_string_arr(ZP_SETTINGS_FILE, "Buy Menu Weapons", "GRENADES", g_grenades_items)
+	}
+	
+	g_HumanClassCount = zp_class_human_get_count()
+	g_HumanClassWeaponRestricts = ArrayCreate(1, 1)
+	g_HumanClassWeaponRestrictsBitSum = ArrayCreate(1, 1)
+	
+	for (new i = 0; i < g_HumanClassCount; i++)
+	{
+		new Array:weapon_restricts = ArrayCreate(1, 1)
+		
+		new real_name[32]
+		zp_class_human_get_real_name(i, real_name, charsmax(real_name))
+		
+		amx_load_setting_int_arr(ZP_HUMANCLASSES_FILE, real_name, "WEAPON RESTRICTS", weapon_restricts)
+		
+		ArrayPushCell(g_HumanClassWeaponRestricts, weapon_restricts)
+		
+		new classWRBitSum
+		if (weapon_restricts != Invalid_Array)
+		{
+			for (new j = 0; j < ArraySize(weapon_restricts); j++)
+			{
+				classWRBitSum |= (1<<ArrayGetCell(weapon_restricts, j))
+			}
+		}
+		else
+		{
+			classWRBitSum = 0b
+		}
+		
+		ArrayPushCell(g_HumanClassWeaponRestrictsBitSum, classWRBitSum)
+	}
+	
+	g_ClassesPrimaryItems = ArrayCreate(1, 1)
+	g_ClassesSecondaryItems = ArrayCreate(1, 1)
+	
+	new g_HumanClassCount = zp_class_human_get_count() 
+	
+	for (new i = 0; i < g_HumanClassCount; i++)
+	{
+		new Array:classPrimary = ArrayCreate(32, 1)
+		new Array:classSecondary = ArrayCreate(32, 1)
+		new Array:weapon_restricts = ArrayGetCell(g_HumanClassWeaponRestricts, i)
+		
+		new real_name[32]
+		zp_class_human_get_real_name(i, real_name, charsmax(real_name))
+		
+		log_amx("^n^n^nClass: %d, %s.", i, real_name)
+		
+		new restCount
+	
+		if (weapon_restricts != Invalid_Array)
+		{
+			restCount = ArraySize(weapon_restricts)
+		}
+		else
+		{
+			restCount = 0
+		}
+		
+		new weapon_name[32]
+		
+		for (new weapI = 0; weapI < ArraySize(g_primary_items); weapI++)
+		{
+			ArrayGetString(g_primary_items, weapI, weapon_name, charsmax(weapon_name))
+			
+			new bool:aviable = true
+			for (new j = 0; j < restCount; j++)
+			{
+				if (get_weapon_ID(weapon_name) == ArrayGetCell(weapon_restricts, j))
+				{
+					aviable = false
+				}
+			}
+			if (aviable)
+			{
+				log_amx("Primary weapon: %s, %d.", weapon_name, get_weapon_ID(weapon_name))
+				ArrayPushString(classPrimary, weapon_name)
+			}
+		}
+		
+		for (new weapI = 0; weapI < ArraySize(g_secondary_items); weapI++)
+		{
+			ArrayGetString(g_secondary_items, weapI, weapon_name, charsmax(weapon_name))
+			
+			new bool:aviable = true
+			for (new j = 0; j < restCount; j++)
+			{
+				if (get_weapon_ID(weapon_name) == ArrayGetCell(weapon_restricts, j))
+				{
+					aviable = false
+				}
+			}
+			if (aviable)
+			{
+				log_amx("Secondary weapon: %s, %d.", weapon_name, get_weapon_ID(weapon_name))
+				ArrayPushString(classSecondary, weapon_name)
+			}
+		}
+		ArrayPushCell(g_ClassesPrimaryItems, classPrimary)
+		ArrayPushCell(g_ClassesSecondaryItems, classSecondary)
 	}
 }
 
@@ -264,11 +375,14 @@ public human_weapons(id)
 		return;
 	}
 	
+	new Array:classWeaponsPrimary = ArrayGetCell(g_ClassesPrimaryItems, zp_class_human_get_current(id))
+	new Array:classWeaponsSecondary = ArrayGetCell(g_ClassesSecondaryItems, zp_class_human_get_current(id))
+	
 	// Random weapons settings
-	if (get_pcvar_num(cvar_random_primary))
-		buy_primary_weapon(id, random_num(0, ArraySize(g_primary_items) - 1))
-	if (get_pcvar_num(cvar_random_secondary))
-		buy_secondary_weapon(id, random_num(0, ArraySize(g_secondary_items) - 1))
+	if (get_pcvar_num(cvar_random_primary) && classWeaponsPrimary != Invalid_Array && ArraySize(classWeaponsPrimary) > 0)
+		buy_primary_weapon(id, random_num(0, ArraySize(classWeaponsPrimary) - 1))
+	if (get_pcvar_num(cvar_random_secondary) && classWeaponsSecondary != Invalid_Array && ArraySize(classWeaponsSecondary) > 0)
+		buy_secondary_weapon(id, random_num(0, ArraySize(classWeaponsSecondary) - 1))
 	if (get_pcvar_num(cvar_random_grenades))
 		buy_grenades(id, random_num(0, ArraySize(g_grenades_items) - 1))
 	
@@ -277,18 +391,18 @@ public human_weapons(id)
 	{
 		flag_set(g_CanBuyPrimary, id)
 		
-		if (is_user_bot(id))
-			buy_primary_weapon(id, random_num(0, ArraySize(g_primary_items) - 1))
-		else if (WPN_AUTO_ON)
+		if (is_user_bot(id) && classWeaponsPrimary != Invalid_Array && ArraySize(classWeaponsPrimary) > 0)
+			buy_primary_weapon(id, random_num(0, ArraySize(classWeaponsPrimary) - 1))
+		else if (WPN_AUTO_ON && classWeaponsPrimary != Invalid_Array && ArraySize(classWeaponsPrimary) > 0)
 			buy_primary_weapon(id, WPN_AUTO_PRI)
 	}
 	if (get_pcvar_num(cvar_buy_custom_secondary))
 	{
 		flag_set(g_CanBuySecondary, id)
 		
-		if (is_user_bot(id))
-			buy_secondary_weapon(id, random_num(0, ArraySize(g_secondary_items) - 1))
-		else if (WPN_AUTO_ON)
+		if (is_user_bot(id) && classWeaponsSecondary != Invalid_Array && ArraySize(classWeaponsSecondary) > 0)
+			buy_secondary_weapon(id, random_num(0, ArraySize(classWeaponsSecondary) - 1))
+		else if (WPN_AUTO_ON && classWeaponsSecondary != Invalid_Array && ArraySize(classWeaponsSecondary) > 0)
 			buy_secondary_weapon(id, WPN_AUTO_SEC)
 	}
 	if (get_pcvar_num(cvar_buy_custom_grenades))
@@ -318,9 +432,39 @@ public human_weapons(id)
 // Shows the next available buy menu
 show_available_buy_menus(id)
 {
-	if (flag_get(g_CanBuyPrimary, id))
+	new bool:primaryWeaponsAviable
+	new bool:secondaryWeaponsAviable 
+	
+	new g_HumanClassCurrent = zp_class_human_get_current(id) 
+	
+	new Array:weapon_restricts = ArrayGetCell(g_HumanClassWeaponRestricts, g_HumanClassCurrent)
+	
+	new real_name[32]
+	zp_class_human_get_real_name(g_HumanClassCurrent, real_name, charsmax(real_name))
+	
+	new classWRBitSum
+	if (weapon_restricts != Invalid_Array)
+	{
+		for (new j = 0; j < ArraySize(weapon_restricts); j++)
+		{
+			classWRBitSum |= (1<<ArrayGetCell(weapon_restricts, j))
+		}
+	}
+	else
+	{
+		classWRBitSum = 0b
+	}
+	
+	primaryWeaponsAviable = (((~classWRBitSum) & (PRIMARY_WEAPONS_BIT_SUM)) != 0) ? true : false
+	secondaryWeaponsAviable = (((~classWRBitSum) & (SECONDARY_WEAPONS_BIT_SUM)) != 0) ? true : false
+	
+	//client_print(0, print_chat, "^n^n%s bitsum weapon restricts is %d.", real_name, classWRBitSum)
+	
+	//client_print(0, print_chat, "Bitsum PRIM %d. Bitsum SEC %d. Bitsum all %d. IsPrim %d. IsSec %d.", PRIMARY_WEAPONS_BIT_SUM, SECONDARY_WEAPONS_BIT_SUM, classWRBitSum, primaryWeaponsAviable, secondaryWeaponsAviable)
+	
+	if (flag_get(g_CanBuyPrimary, id) && primaryWeaponsAviable)
 		show_menu_buy_primary(id)
-	else if (flag_get(g_CanBuySecondary, id))
+	else if (flag_get(g_CanBuySecondary, id) && secondaryWeaponsAviable)
 		show_menu_buy_secondary(id)
 	else if (flag_get(g_CanBuyGrenades, id))
 		show_menu_buy_grenades(id)
@@ -336,28 +480,42 @@ show_menu_buy_primary(id)
 		return;
 	}
 	
-	static menu[300], weapon_name[32]
-	new len, index, maxloops = min(WPN_STARTID+7, WPN_MAXIDS)
-	
-	// Title
-	len += formatex(menu[len], charsmax(menu) - len, "\y%L \r[%d-%d]^n^n", id, "MENU_BUY1_TITLE", WPN_STARTID+1, min(WPN_STARTID+7, WPN_MAXIDS))
-	
-	// 1-7. Weapon List
-	for (index = WPN_STARTID; index < maxloops; index++)
+	new Array:classWeapons = ArrayGetCell(g_ClassesPrimaryItems, zp_class_human_get_current(id))
+	if (classWeapons != Invalid_Array && ArraySize(classWeapons) > 0)
 	{
-		ArrayGetString(g_primary_items, index, weapon_name, charsmax(weapon_name))
-		len += formatex(menu[len], charsmax(menu) - len, "\r%d.\w %s^n", index-WPN_STARTID+1, WEAPONNAMES[get_weaponid(weapon_name)])
+		new weaponsCount = ArraySize(classWeapons)
+		
+		static menu[300], weapon_name[32]
+		new len, index, maxloops = min(WPN_STARTID+7, weaponsCount)
+		
+		ArrayGetString(classWeapons, 0, weapon_name, charsmax(weapon_name))
+		log_amx("weaponCountPrimary Classid %d is %d. %s", zp_class_human_get_current(id), weaponsCount, weapon_name)
+		
+		// Title
+		len += formatex(menu[len], charsmax(menu) - len, "\y%L \r[%d-%d]^n^n", id, "MENU_BUY1_TITLE", WPN_STARTID+1, min(WPN_STARTID+7, weaponsCount))
+		
+		// 1-7. Weapon List
+		for (index = WPN_STARTID; index < maxloops; index++)
+		{
+			ArrayGetString(classWeapons, index, weapon_name, charsmax(weapon_name))
+			len += formatex(menu[len], charsmax(menu) - len, "\r%d.\w %s^n", index-WPN_STARTID+1, WEAPONNAMES[get_weapon_ID(weapon_name)])
+		}
+		
+		// 8. Auto Select
+		len += formatex(menu[len], charsmax(menu) - len, "^n\r8.\w %L \y[%L]", id, "MENU_AUTOSELECT", id, (WPN_AUTO_ON) ? "MOTD_ENABLED" : "MOTD_DISABLED")
+		
+		// 9. Next/Back - 0. Exit
+		len += formatex(menu[len], charsmax(menu) - len, "^n^n\r9.\w %L/%L^n^n\r0.\w %L", id, "MENU_NEXT", id, "MENU_BACK", id, "MENU_EXIT")
+		
+		// Fix for AMXX custom menus
+		set_pdata_int(id, OFFSET_CSMENUCODE, 0)
+		show_menu(id, KEYSMENU, menu, menu_time, "Buy Menu Primary")
 	}
-	
-	// 8. Auto Select
-	len += formatex(menu[len], charsmax(menu) - len, "^n\r8.\w %L \y[%L]", id, "MENU_AUTOSELECT", id, (WPN_AUTO_ON) ? "MOTD_ENABLED" : "MOTD_DISABLED")
-	
-	// 9. Next/Back - 0. Exit
-	len += formatex(menu[len], charsmax(menu) - len, "^n^n\r9.\w %L/%L^n^n\r0.\w %L", id, "MENU_NEXT", id, "MENU_BACK", id, "MENU_EXIT")
-	
-	// Fix for AMXX custom menus
-	set_pdata_int(id, OFFSET_CSMENUCODE, 0)
-	show_menu(id, KEYSMENU, menu, menu_time, "Buy Menu Primary")
+	else
+	{
+		flag_unset(g_CanBuyPrimary, id)
+		show_available_buy_menus(id)
+	}
 }
 
 // Buy Menu Secondary
@@ -370,28 +528,40 @@ show_menu_buy_secondary(id)
 		return;
 	}
 	
-	static menu[250], weapon_name[32]
-	new len, index, maxloops = ArraySize(g_secondary_items)
-	
-	// Title
-	len += formatex(menu[len], charsmax(menu) - len, "\y%L^n", id, "MENU_BUY2_TITLE")
-	
-	// 1-6. Weapon List
-	for (index = 0; index < maxloops; index++)
+	new Array:classWeapons = ArrayGetCell(g_ClassesSecondaryItems, zp_class_human_get_current(id))
+	if (classWeapons != Invalid_Array && ArraySize(classWeapons) > 0)
 	{
-		ArrayGetString(g_secondary_items, index, weapon_name, charsmax(weapon_name))
-		len += formatex(menu[len], charsmax(menu) - len, "^n\r%d.\w %s", index+1, WEAPONNAMES[get_weaponid(weapon_name)])
+		static menu[250], weapon_name[32]
+		new len, index, maxloops = ArraySize(classWeapons)
+		
+		ArrayGetString(classWeapons, 0, weapon_name, charsmax(weapon_name))
+		log_amx("weaponCountSecondary Classid %d is %d. %s", zp_class_human_get_current(id), maxloops, weapon_name)
+		
+		// Title
+		len += formatex(menu[len], charsmax(menu) - len, "\y%L^n", id, "MENU_BUY2_TITLE")
+		
+		// 1-6. Weapon List
+		for (index = 0; index < maxloops; index++)
+		{
+			ArrayGetString(classWeapons, index, weapon_name, charsmax(weapon_name))
+			len += formatex(menu[len], charsmax(menu) - len, "^n\r%d.\w %s", index+1, WEAPONNAMES[get_weapon_ID(weapon_name)])
+		}
+		
+		// 8. Auto Select
+		len += formatex(menu[len], charsmax(menu) - len, "^n^n\r8.\w %L \y[%L]", id, "MENU_AUTOSELECT", id, (WPN_AUTO_ON) ? "MOTD_ENABLED" : "MOTD_DISABLED")
+		
+		// 0. Exit
+		len += formatex(menu[len], charsmax(menu) - len, "^n^n\r0.\w %L", id, "MENU_EXIT")
+		
+		// Fix for AMXX custom menus
+		set_pdata_int(id, OFFSET_CSMENUCODE, 0)
+		show_menu(id, KEYSMENU, menu, menu_time, "Buy Menu Secondary")
 	}
-	
-	// 8. Auto Select
-	len += formatex(menu[len], charsmax(menu) - len, "^n^n\r8.\w %L \y[%L]", id, "MENU_AUTOSELECT", id, (WPN_AUTO_ON) ? "MOTD_ENABLED" : "MOTD_DISABLED")
-	
-	// 0. Exit
-	len += formatex(menu[len], charsmax(menu) - len, "^n^n\r0.\w %L", id, "MENU_EXIT")
-	
-	// Fix for AMXX custom menus
-	set_pdata_int(id, OFFSET_CSMENUCODE, 0)
-	show_menu(id, KEYSMENU, menu, menu_time, "Buy Menu Secondary")
+	else
+	{
+		flag_unset(g_CanBuySecondary, id)
+		show_available_buy_menus(id)
+	}
 }
 
 // Buy Menu Grenades
@@ -414,7 +584,7 @@ show_menu_buy_grenades(id)
 	for (index = 0; index < maxloops; index++)
 	{
 		ArrayGetString(g_grenades_items, index, weapon_name, charsmax(weapon_name))
-		len += formatex(menu[len], charsmax(menu) - len, "^n\r%d.\w %s", index+1, WEAPONNAMES[get_weaponid(weapon_name)])
+		len += formatex(menu[len], charsmax(menu) - len, "^n\r%d.\w %s", index+1, WEAPONNAMES[get_weapon_ID(weapon_name)])
 	}
 	
 	// 8. Auto Select
@@ -482,8 +652,9 @@ buy_primary_weapon(id, selection)
 	
 	// Get weapon's id
 	static weapon_name[32]
-	ArrayGetString(g_primary_items, selection, weapon_name, charsmax(weapon_name))
-	new weaponid = get_weaponid(weapon_name)
+	new Array:classWeapons = ArrayGetCell(g_ClassesPrimaryItems, zp_class_human_get_current(id))
+	ArrayGetString(classWeapons, selection, weapon_name, charsmax(weapon_name))
+	new weaponid = get_weapon_ID(weapon_name)
 	
 	// Give the new weapon and full ammo
 	give_item(id, weapon_name)
@@ -534,8 +705,9 @@ buy_secondary_weapon(id, selection)
 	
 	// Get weapon's id
 	static weapon_name[32]
-	ArrayGetString(g_secondary_items, selection, weapon_name, charsmax(weapon_name))
-	new weaponid = get_weaponid(weapon_name)
+	new Array:classWeapons = ArrayGetCell(g_ClassesSecondaryItems, zp_class_human_get_current(id))
+	ArrayGetString(classWeapons, selection, weapon_name, charsmax(weapon_name))
+	new weaponid = get_weapon_ID(weapon_name)
 	
 	// Give the new weapon and full ammo
 	give_item(id, weapon_name)
@@ -708,4 +880,42 @@ stock fm_cs_get_current_weapon_ent(id)
 		return -1;
 	
 	return get_pdata_cbase(id, OFFSET_ACTIVE_ITEM);
+}
+
+public get_weapon_ID(weapon_name[])
+{
+	new Result = 0
+	
+	if (equali(weapon_name, "weapon_p228")) Result = 1
+	if (equali(weapon_name, "weapon_glock")) Result = 2
+	if (equali(weapon_name, "weapon_scout")) Result = 3
+	if (equali(weapon_name, "weapon_hegrenade")) Result = 4
+	if (equali(weapon_name, "weapon_xm1014")) Result = 5
+	if (equali(weapon_name, "weapon_c4")) Result = 6
+	if (equali(weapon_name, "weapon_mac10")) Result = 7
+	if (equali(weapon_name, "weapon_aug")) Result = 8
+	if (equali(weapon_name, "weapon_smokegrenade")) Result = 9
+	if (equali(weapon_name, "weapon_elite")) Result = 10
+	if (equali(weapon_name, "weapon_fiveseven")) Result = 11
+	if (equali(weapon_name, "weapon_ump45")) Result = 12
+	if (equali(weapon_name, "weapon_sg550")) Result = 13
+	if (equali(weapon_name, "weapon_galil")) Result = 14
+	if (equali(weapon_name, "weapon_famas")) Result = 15
+	if (equali(weapon_name, "weapon_usp")) Result = 16
+	if (equali(weapon_name, "weapon_glock18")) Result = 17
+	if (equali(weapon_name, "weapon_awp")) Result = 18
+	if (equali(weapon_name, "weapon_mp5navy")) Result = 19
+	if (equali(weapon_name, "weapon_m249")) Result = 20
+	if (equali(weapon_name, "weapon_m3")) Result = 21
+	if (equali(weapon_name, "weapon_m4a1")) Result = 22
+	if (equali(weapon_name, "weapon_tmp")) Result = 23
+	if (equali(weapon_name, "weapon_g3sg1")) Result = 24
+	if (equali(weapon_name, "weapon_flashbang")) Result = 25
+	if (equali(weapon_name, "weapon_deagle")) Result = 26
+	if (equali(weapon_name, "weapon_sg552")) Result = 27
+	if (equali(weapon_name, "weapon_ak47")) Result = 28
+	if (equali(weapon_name, "weapon_knife")) Result = 29
+	if (equali(weapon_name, "weapon_p90")) Result = 30
+	
+	return Result
 }

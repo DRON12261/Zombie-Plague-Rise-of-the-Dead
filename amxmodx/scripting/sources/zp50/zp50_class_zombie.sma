@@ -170,7 +170,7 @@ public show_class_menu(id)
 
 public show_menu_zombieclass(id)
 {
-	static menu[128], name[32], description[32], transkey[64]
+	static menu[512], name[32], description[32], transkey[64]
 	new menuid, itemdata[2], index
 	
 	formatex(menu, charsmax(menu), "%L\r", id, "MENU_ZCLASS")
@@ -786,6 +786,3 @@ public _class_zombie_menu_text_add(plugin_id, num_params)
 	get_string(1, text, charsmax(text))
 	format(g_AdditionalMenuText, charsmax(g_AdditionalMenuText), "%s%s", g_AdditionalMenuText, text)
 }
-/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
-*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1049\\ f0\\ fs16 \n\\ par }
-*/
