@@ -13,6 +13,7 @@
 #include <cstrike>
 #include <hamsandwich>
 #include <fun>
+#include <csx>
 
 #include <zp50_core>
 #include <zp50_class_survivor>

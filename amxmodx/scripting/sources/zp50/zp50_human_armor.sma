@@ -14,6 +14,7 @@
 #include <fakemeta>
 #include <hamsandwich>
 #include <cs_ham_bots_api>
+#include <amx_settings_api>
 #include <zp50_core>
 #define LIBRARY_NEMESIS "zp50_class_nemesis"
 #include <zp50_class_nemesis>
@@ -24,6 +25,9 @@
 #define LIBRARY_SNIPER "zp50_class_sniper"
 #include <zp50_class_sniper>
 
+// Settings file
+new const ZP_SETTINGS_FILE[] = "zombieplague.ini"
+
 // CS Player PData Offsets (win32)
 const OFFSET_PAINSHOCK = 108 // ConnorMcLeod
 
@@ -31,7 +35,10 @@ const OFFSET_PAINSHOCK = 108 // ConnorMcLeod
 const DMG_HEGRENADE = (1<<24)
 
 // CS sounds
-new const g_sound_armor_hit[] = "player/bhit_helmet-1.wav"
+new const sound_armor_hit[][] = { "zombie_plague/zombies/attack_kevlar.wav" }
+new Array:g_sound_armor_hit
+
+#define SOUND_MAX_LENGTH 64
 
 new cvar_human_armor_protect
 new cvar_armor_protect_nemesis, cvar_survivor_armor_protect,
@@ -78,7 +85,26 @@ public native_filter(const name[], index, trap)
 
 public plugin_precache()
 {
-	precache_sound(g_sound_armor_hit)
+	g_sound_armor_hit = ArrayCreate(SOUND_MAX_LENGTH, 1)
+	
+	amx_load_setting_string_arr(ZP_SETTINGS_FILE, "Sounds", "ZOMBIE HIT ARMOR", g_sound_armor_hit)
+	
+	new index
+	if (ArraySize(g_sound_armor_hit) == 0)
+	{
+		for (index = 0; index < sizeof sound_armor_hit; index++)
+			ArrayPushString(g_sound_armor_hit, sound_armor_hit[index])
+		
+		// Save to external file
+		amx_save_setting_string_arr(ZP_SETTINGS_FILE, "Sounds", "ZOMBIE HIT ARMOR", g_sound_armor_hit)
+	}
+	
+	new sound[SOUND_MAX_LENGTH]
+	for (index = 0; index < ArraySize(g_sound_armor_hit); index++)
+	{
+		ArrayGetString(g_sound_armor_hit, index, sound, charsmax(sound))
+		precache_sound(sound)
+	}
 }
 
 // Ham Take Damage Forward
@@ -87,6 +113,8 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 	// Non-player damage or self damage
 	if (victim == attacker || !is_user_alive(attacker))
 		return HAM_IGNORED;
+	
+	static sound[SOUND_MAX_LENGTH]
 	
 	// Zombie attacking human...
 	if (zp_core_is_zombie(attacker) && !zp_core_is_zombie(victim))
@@ -122,7 +150,8 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 		// If he has some, block damage and reduce armor instead
 		if (armor > 0.0)
 		{
-			emit_sound(victim, CHAN_BODY, g_sound_armor_hit, 1.0, ATTN_NORM, 0, PITCH_NORM)
+			ArrayGetString(g_sound_armor_hit, random_num(0, ArraySize(g_sound_armor_hit) - 1), sound, charsmax(sound))
+			emit_sound(victim, CHAN_BODY, sound, 1.0, ATTN_NORM, 0, PITCH_NORM)
 			
 			if (armor - damage > 0.0)
 				set_pev(victim, pev_armorvalue, armor - damage)

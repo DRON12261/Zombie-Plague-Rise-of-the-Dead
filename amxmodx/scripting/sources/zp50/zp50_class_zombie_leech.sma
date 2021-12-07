@@ -32,7 +32,11 @@ const Float:zombieclass5_gravity = 1.0
 const Float:zombieclass5_knockback = 1.25
 new zombieclass5_hp_reward = 200 // extra hp for infections/kills
 
-new g_ZombieClassID
+new const zclass_ring_sprite[] = "sprites/shockwave.spr" // ring sprite
+new const zclass_screamsounds[][] = { "zombie_plague/zombies/leech_scream.wav" } // scream sound
+new zclass_ring_colors[3] = {255, 0, 0}
+
+new g_ZombieLeech
 
 public plugin_precache()
 {
@@ -40,12 +44,12 @@ public plugin_precache()
 	
 	new index
 	
-	g_ZombieClassID = zp_class_zombie_register(zombieclass5_name, zombieclass5_info, zombieclass5_health, zombieclass5_speed, zombieclass5_gravity)
-	zp_class_zombie_register_kb(g_ZombieClassID, zombieclass5_knockback)
+	g_ZombieLeech = zp_class_zombie_register(zombieclass5_name, zombieclass5_info, zombieclass5_health, zombieclass5_speed, zombieclass5_gravity)
+	zp_class_zombie_register_kb(g_ZombieLeech, zombieclass5_knockback)
 	for (index = 0; index < sizeof zombieclass5_models; index++)
-		zp_class_zombie_register_model(g_ZombieClassID, zombieclass5_models[index])
+		zp_class_zombie_register_model(g_ZombieLeech, zombieclass5_models[index])
 	for (index = 0; index < sizeof zombieclass5_clawmodels; index++)
-		zp_class_zombie_register_claw(g_ZombieClassID, zombieclass5_clawmodels[index])
+		zp_class_zombie_register_claw(g_ZombieLeech, zombieclass5_clawmodels[index])
 	
 	RegisterHam(Ham_Killed, "player", "fw_PlayerKilled_Post", 1)
 	RegisterHamBots(Ham_Killed, "fw_PlayerKilled_Post", 1)
@@ -60,6 +64,7 @@ public plugin_natives()
 	set_module_filter("module_filter")
 	set_native_filter("native_filter")
 }
+
 public module_filter(const module[])
 {
 	if (equal(module, LIBRARY_NEMESIS))
@@ -67,6 +72,7 @@ public module_filter(const module[])
 	
 	return PLUGIN_CONTINUE;
 }
+
 public native_filter(const name[], index, trap)
 {
 	if (!trap)
@@ -81,7 +87,7 @@ public zp_fw_core_infect_post(id, attacker)
 	if (is_user_alive(attacker) && attacker != id && zp_core_is_zombie(attacker))
 	{
 		// Leech Zombie infection hp bonus
-		if (zp_class_zombie_get_current(attacker) == g_ZombieClassID)
+		if (zp_class_zombie_get_current(attacker) == g_ZombieLeech)
 			set_user_health(attacker, get_user_health(attacker) + zombieclass5_hp_reward)
 	}
 }
@@ -93,10 +99,13 @@ public fw_PlayerKilled_Post(victim, attacker, shouldgib)
 		return;
 	
 	// Leech Zombie kill hp bonus
-	if (zp_core_is_zombie(attacker) && zp_class_zombie_get_current(attacker) == g_ZombieClassID)
+	if (zp_core_is_zombie(attacker) && zp_class_zombie_get_current(attacker) == g_ZombieLeech)
 	{
 		// Unless nemesis
 		if (!LibraryExists(LIBRARY_NEMESIS, LibType_Library) || !zp_class_nemesis_get(attacker))
 			set_user_health(attacker, get_user_health(attacker) + zombieclass5_hp_reward)
 	}
 }
+/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
+*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1049\\ f0\\ fs16 \n\\ par }
+*/

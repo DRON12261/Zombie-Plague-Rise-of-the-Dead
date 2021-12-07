@@ -34,7 +34,7 @@ new const humanclass7_weaponrestricts[] = {CSW_P228, CSW_ELITE, CSW_FIVESEVEN, C
 
 new g_HumanKiller
 
-new g_MaxNumJumpsKiller = 3
+new g_MaxNumJumpsKiller = 2
 new g_jumpNumKiller[33] = 0
 new bool:g_doJumpKiller[33] = false
 

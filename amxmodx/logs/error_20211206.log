@@ -1,0 +1,7 @@
+L 12/06/2021 - 00:04:30: Start of error session.
+L 12/06/2021 - 00:04:30: Info (map "de_dust_cz") (file "addons/amxmodx/logs/error_20211206.log")
+L 12/06/2021 - 00:04:30: Invalid index 7 (count: 1)
+L 12/06/2021 - 00:04:30: [AMXX] Displaying debug trace (plugin "zp50_buy_menus.amxx", version "1.0.0")
+L 12/06/2021 - 00:04:30: [AMXX] Run time error 10: native error (native "ArrayGetString")
+L 12/06/2021 - 00:04:30: [AMXX]    [0] zp50_buy_menus.sma::buy_primary_weapon (line 656)
+L 12/06/2021 - 00:04:30: [AMXX]    [1] zp50_buy_menus.sma::menu_buy_primary (line 639)
